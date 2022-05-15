@@ -138,7 +138,7 @@ sudo bash -c "$(curl -L https://basemount.basespace.illumina.com/install/)"
 mkdir /media/BaseSpace
 
 ## mount 
-basemount /media/BaseSpace/
+basemount /media/BaseSpace
 ## unmount
 basemount --unmount /media/BaseSpace
 
@@ -178,35 +178,8 @@ bs download run -i 195844671 -o /media/aws_share/D32_Platform_Development/1_Raw_
 ### Convert BCL files to fastq.gz files using bcl2fastq
 
 ```
-cd /media/nas/BIASCO_Archive_Test_Folder/Basespace_Illumina_runs/Basespace_run_194642476
 
-bcl2fastq 
-
-You will find *.fastq.gz files under this following folder /media/nas/BIASCO_Archive_Test_Folder/Basespace_Illumina_runs/Basespace_run_194642476/Data/Intensities/BaseCalls/
-
-
-bcl2fastq --runfolder-dir /media/BaseSpace/Runs/Pool\ ISA\ AVRO\ Test1_Run2/Files --output-dir ~/user/Seagate/Pool_ISA_AVRO_Test1_Run2
-
-# To get 'Pool ISA AVRO Test2' data,  unmount /media/BaseSpace, then mount again by the following command:
-
-basemount --unmount /media/BaseSpace
-basemount /media/BaseSpace
-
-then
-
-bcl2fastq --runfolder-dir /media/BaseSpace/Runs/Pool\ ISA\ AVRO\ Test2/Files --output-dir ~/user/Seagate/Pool_ISA_AVRO_Test2
-
-# Pool-ISA-AVROtest3, note : ~/user/Seagate/Basespace_run_196467313 will be created automaticaly.
-
-bcl2fastq --runfolder-dir /media/aws_share/D32_Platform_Development/test/01_RawData/Basespace_Illumina_runs/MiSeq/Basespace_run_196467313 --output-dir ~/user/Seagate/Basespace_run_196467318
-
-# POOL ISA AVRO Test4,
-nohup bcl2fastq --runfolder-dir /media/BaseSpace/Runs/'POOL ISA AVRO Test4'/Files --output-dir /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906 > logSept2ToFq.txt 2>&1 &
-
-# 'ISA POOL AVRO 1'
-
-nohup bcl2fastq --runfolder-dir /media/BaseSpace/Runs/'ISA POOL AVRO 1'/Files --output-dir /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856 > logOct22ToFq.txt 2>&1 &
-
+# Example:
 
 # 'ISA POOL AVRO 2'
 
