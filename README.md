@@ -10,19 +10,6 @@
 IS-Seq is a pipeline for identifying insert sites on host genome when
 using viral vectors in gene therapy.
 
-## Update
-
-IS-Seq use the “Latest” branch as the development branch, to update
-other branch, you need to use the following command:
-
-``` bash
-For example, to update the "Latest" branch:
-
-git checkout Latest
-git branch -a(To make sure you are in the Latest branch)
-git pull
-```
-
 ## Introduction
 
 This pipeline can generate 3 types of analysis results based on
@@ -85,7 +72,7 @@ then tar xvzf file.tar.gz from somePath,
 and make a soft link:
 ln -s somePath/flexbar-3.5.0-linux/flexbar /usr/bin/flexbar
 e.g.
-/usr/bin/flexbar -> /home/ayan/Downloads/flexbar-3.5.0-linux/flexbar
+/usr/bin/flexbar -> /home/user/Downloads/flexbar-3.5.0-linux/flexbar
 you also need "sudo apt-get install libtbb2" for flexbar to run
 
 picard-tools:
@@ -143,7 +130,7 @@ BiocManager::install("GenomicRanges")
 Rscript R/makeREFIndex.R -h
 
 # For example: hg38
-Rscript $HOME/Aimin/IS-Seq/R/makeREFIndex.R -i ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_34/GRCh38.primary_assembly.genome.fa.gz -g ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_34/gencode.v34.annotation.gtf.gz -o /home/ayan/Aimin/IS-Seq/utilsRefData/hg38/GRCh38.primary_assembly.genome.fa
+Rscript $HOME/user/IS-Seq/R/makeREFIndex.R -i ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_34/GRCh38.primary_assembly.genome.fa.gz -g ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_34/gencode.v34.annotation.gtf.gz -o /home/user/IS-Seq/utilsRefData/hg38/GRCh38.primary_assembly.genome.fa
 ```
 
 ### To get sequencing data from basespace, you can run the following command:
@@ -175,14 +162,14 @@ bs run list
 # if using bs download 
 Download bs from https://developer.basespace.illumina.com/docs/content/documentation/cli/cli-overview firstly
  
-bs download run -i 194449296 -o /Volumes/AvroLabData/BIASCO_Archive_Test_Folder/Aimin_Temp_files/Basespace_runs/194449296
+bs download run -i 194449296 -o /Volumes/AvroLabData/BIASCO_Archive_Test_Folder/user_Temp_files/Basespace_runs/194449296
 
-bs download run -i 194642476 -o /media/nas/BIASCO_Archive_Test_Folder/Aimin_Temp_files/Basespace_runs/194642476 > logDownload.txt 2>&1 &
+bs download run -i 194642476 -o /media/nas/BIASCO_Archive_Test_Folder/user_Temp_files/Basespace_runs/194642476 > logDownload.txt 2>&1 &
 
-bs download run -i 194449296 -o /media/nas/BIASCO_Archive_Test_Folder/Aimin_Temp_files/Basespace_runs/194449296 > logDownload_194449296.txt 2>&1 &
+bs download run -i 194449296 -o /media/nas/BIASCO_Archive_Test_Folder/user_Temp_files/Basespace_runs/194449296 > logDownload_194449296.txt 2>&1 &
 
 
-/media/nas/BIASCO_Archive_Test_Folder/Aimin_Temp_files/Basespace_runs/194449296/Data/Intensities/BaseCalls:
+/media/nas/BIASCO_Archive_Test_Folder/user_Temp_files/Basespace_runs/194449296/Data/Intensities/BaseCalls:
 
 #194642476
 
@@ -202,7 +189,7 @@ bs download run -i 195844671 -o /media/aws_share/D32_Platform_Development/1_Raw_
     You will find *.fastq.gz files under this following folder /media/nas/BIASCO_Archive_Test_Folder/Basespace_Illumina_runs/Basespace_run_194642476/Data/Intensities/BaseCalls/
     
     
-    bcl2fastq --runfolder-dir /media/BaseSpace/Runs/Pool\ ISA\ AVRO\ Test1_Run2/Files --output-dir ~/Aimin/Seagate/Pool_ISA_AVRO_Test1_Run2
+    bcl2fastq --runfolder-dir /media/BaseSpace/Runs/Pool\ ISA\ AVRO\ Test1_Run2/Files --output-dir ~/user/Seagate/Pool_ISA_AVRO_Test1_Run2
     
     # To get 'Pool ISA AVRO Test2' data,  unmount /media/BaseSpace, then mount again by the following command:
     
@@ -211,11 +198,11 @@ bs download run -i 195844671 -o /media/aws_share/D32_Platform_Development/1_Raw_
     
     then
     
-    bcl2fastq --runfolder-dir /media/BaseSpace/Runs/Pool\ ISA\ AVRO\ Test2/Files --output-dir ~/Aimin/Seagate/Pool_ISA_AVRO_Test2
+    bcl2fastq --runfolder-dir /media/BaseSpace/Runs/Pool\ ISA\ AVRO\ Test2/Files --output-dir ~/user/Seagate/Pool_ISA_AVRO_Test2
     
-    # Pool-ISA-AVROtest3, note : ~/Aimin/Seagate/Basespace_run_196467313 will be created automaticaly.
+    # Pool-ISA-AVROtest3, note : ~/user/Seagate/Basespace_run_196467313 will be created automaticaly.
     
-    bcl2fastq --runfolder-dir /media/aws_share/D32_Platform_Development/test/01_RawData/Basespace_Illumina_runs/MiSeq/Basespace_run_196467313 --output-dir ~/Aimin/Seagate/Basespace_run_196467318
+    bcl2fastq --runfolder-dir /media/aws_share/D32_Platform_Development/test/01_RawData/Basespace_Illumina_runs/MiSeq/Basespace_run_196467313 --output-dir ~/user/Seagate/Basespace_run_196467318
     
     # POOL ISA AVRO Test4,
     nohup bcl2fastq --runfolder-dir /media/BaseSpace/Runs/'POOL ISA AVRO Test4'/Files --output-dir /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906 > logSept2ToFq.txt 2>&1 &
@@ -232,11 +219,11 @@ bs download run -i 195844671 -o /media/aws_share/D32_Platform_Development/1_Raw_
 ### To have a quick start to using IS-Seq, you can run the following command:
 
 ``` bash
-python /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py
+python /home/user/IS-Seq/IS-SeqlineFv3_test.py
 
-Usage: python /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 <r1.fq.gz> -2 <r2.fq.gz> -s <sampleName> -o <outputFolder> -t <suffix> -r <researchFile> -u <referenceDataDir> -p <utilsProgramDir> -a <analysisType>
+Usage: python /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 <r1.fq.gz> -2 <r2.fq.gz> -s <sampleName> -o <outputFolder> -t <suffix> -r <researchFile> -u <referenceDataDir> -p <utilsProgramDir> -a <analysisType>
 Example:
-python /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /home/ayan/Aimin/IS-Seq/data/PL0431_S1_L001_R1_001.fastq.gz -2 /home/ayan/Aimin/IS-Seq/data/PL0431_S1_L001_R2_001.fastq.gz -s POOL-UCL-CPL-Re -o /home/ayan/Aimin/UploadToEgnyte/Aimin/ISseqOutput -t Mar04 -r /home/ayan/Aimin/IS-Seq/sample_research/Association_pool_CPL_Nov19Fix.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a read
+python /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /home/user/IS-Seq/data/PL0431_S1_L001_R1_001.fastq.gz -2 /home/user/IS-Seq/data/PL0431_S1_L001_R2_001.fastq.gz -s POOL-UCL-CPL-Re -o /home/user/UploadToEgnyte/user/ISseqOutput -t Mar04 -r /home/user/IS-Seq/sample_research/Association_pool_CPL_Nov19Fix.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a read
 ```
 
   - Command line arguments:
@@ -342,84 +329,84 @@ Note: you need to follow these order to run IS-Seq:
     for example:
     
     You can find "*grouped\_IS" files by using
-    /home/ayan/Aimin/Seagate/ISseqOutput/Oct22New/CutAdapt/filterNo/db/*grouped\_IS
+    /home/user/Seagate/ISseqOutput/Oct22New/CutAdapt/filterNo/db/*grouped\_IS
     
     The previous folder name you need to give is
-    /home/ayan/Aimin/Seagate/ISseqOutput/Oct22New
+    /home/user/Seagate/ISseqOutput/Oct22New
 
 ### To get ReadBased results, you need to run the following command:
 
 ``` bash
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /home/ayan/Aimin/IS-Seq/data/PL0431_S1_L001_R1_001.fastq.gz -2 /home/ayan/Aimin/IS-Seq/data/PL0431_S1_L001_R2_001.fastq.gz -s POOL-UCL-CPL-Re -o /home/ayan/Aimin/IS-Seq/ISseqOutput -t Mar06 -r /home/ayan/Aimin/IS-Seq/sample_research/Association_pool_CPL_Nov19Fix.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a read > logMar06.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /home/user/IS-Seq/data/PL0431_S1_L001_R1_001.fastq.gz -2 /home/user/IS-Seq/data/PL0431_S1_L001_R2_001.fastq.gz -s POOL-UCL-CPL-Re -o /home/user/IS-Seq/ISseqOutput -t Mar06 -r /home/user/IS-Seq/sample_research/Association_pool_CPL_Nov19Fix.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a read > logMar06.txt 2>&1 &
 
 # TEST1
 # If you want to output resutls to local Linux:
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/nas/BIASCO_Archive_Test_Folder/Basespace_Illumina_runs/Basespace_run_194642476/Data/Intensities/BaseCalls/Undetermined_S0_L001_R1_001.fastq.gz -2 /media/nas/BIASCO_Archive_Test_Folder/Basespace_Illumina_runs/Basespace_run_194642476/Data/Intensities/BaseCalls/Undetermined_S0_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o /home/ayan/Aimin/IS-Seq/ISseqOutput -t Apr13 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a read > logApr13.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/nas/BIASCO_Archive_Test_Folder/Basespace_Illumina_runs/Basespace_run_194642476/Data/Intensities/BaseCalls/Undetermined_S0_L001_R1_001.fastq.gz -2 /media/nas/BIASCO_Archive_Test_Folder/Basespace_Illumina_runs/Basespace_run_194642476/Data/Intensities/BaseCalls/Undetermined_S0_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o /home/user/IS-Seq/ISseqOutput -t Apr13 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a read > logApr13.txt 2>&1 &
 
 # If you want to output results to NAS directly:(this takes longer time since NAS connection issue)
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/nas/BIASCO_Archive_Test_Folder/Basespace_Illumina_runs/Basespace_run_194642476/Data/Intensities/BaseCalls/Undetermined_S0_L001_R1_001.fastq.gz -2 /media/nas/BIASCO_Archive_Test_Folder/Basespace_Illumina_runs/Basespace_run_194642476/Data/Intensities/BaseCalls/Undetermined_S0_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o /home/ayan/Aimin/UploadToEgnyte/Aimin/ISseqOutput -t Apr13 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a read > logApr13.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/nas/BIASCO_Archive_Test_Folder/Basespace_Illumina_runs/Basespace_run_194642476/Data/Intensities/BaseCalls/Undetermined_S0_L001_R1_001.fastq.gz -2 /media/nas/BIASCO_Archive_Test_Folder/Basespace_Illumina_runs/Basespace_run_194642476/Data/Intensities/BaseCalls/Undetermined_S0_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o /home/user/UploadToEgnyte/user/ISseqOutput -t Apr13 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a read > logApr13.txt 2>&1 &
 
 # TEST1_Run2 
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /home/ayan/Aimin/Seagate/Pool_ISA_AVRO_Test1_Run2/Pool_ISA_Avro_Test1_S1_L001_R1_001.fastq.gz -2 /home/ayan/Aimin/Seagate/Pool_ISA_AVRO_Test1_Run2/Pool_ISA_Avro_Test1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o /home/ayan/Aimin/Seagate/ISseqOutput -t May1 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a read > logMay1.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /home/user/Seagate/Pool_ISA_AVRO_Test1_Run2/Pool_ISA_Avro_Test1_S1_L001_R1_001.fastq.gz -2 /home/user/Seagate/Pool_ISA_AVRO_Test1_Run2/Pool_ISA_Avro_Test1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o /home/user/Seagate/ISseqOutput -t May1 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a read > logMay1.txt 2>&1 &
 
 # TEST2
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /home/ayan/Aimin/Seagate/Pool_ISA_AVRO_Test2/EXP39_ISA_pool_2_S1_L001_R1_001.fastq.gz -2 /home/ayan/Aimin/Seagate/Pool_ISA_AVRO_Test2/EXP39_ISA_pool_2_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST2 -o /home/ayan/Aimin/Seagate/ISseqOutput -t June24 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST2_add_CB.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a read > logJune24.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /home/user/Seagate/Pool_ISA_AVRO_Test2/EXP39_ISA_pool_2_S1_L001_R1_001.fastq.gz -2 /home/user/Seagate/Pool_ISA_AVRO_Test2/EXP39_ISA_pool_2_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST2 -o /home/user/Seagate/ISseqOutput -t June24 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST2_add_CB.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a read > logJune24.txt 2>&1 &
 
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /home/ayan/Aimin/Seagate/Pool_ISA_AVRO_Test2/EXP39_ISA_pool_2_S1_L001_R1_001.fastq.gz -2 /home/ayan/Aimin/Seagate/Pool_ISA_AVRO_Test2/EXP39_ISA_pool_2_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST2 -o /home/ayan/Aimin/Seagate/ISseqOutput -t June24 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST2_add_CB.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a read > logJune24-4.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /home/user/Seagate/Pool_ISA_AVRO_Test2/EXP39_ISA_pool_2_S1_L001_R1_001.fastq.gz -2 /home/user/Seagate/Pool_ISA_AVRO_Test2/EXP39_ISA_pool_2_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST2 -o /home/user/Seagate/ISseqOutput -t June24 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST2_add_CB.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a read > logJune24-4.txt 2>&1 &
 
 # test hg38
 
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /home/ayan/Aimin/Seagate/Pool_ISA_AVRO_Test1_Run2/Pool_ISA_Avro_Test1_S1_L001_R1_001.fastq.gz -2 /home/ayan/Aimin/Seagate/Pool_ISA_AVRO_Test1_Run2/Pool_ISA_Avro_Test1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o /home/ayan/Aimin/Seagate/ISseqOutput -t July24 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add_hg38.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a read > logJuly24.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /home/user/Seagate/Pool_ISA_AVRO_Test1_Run2/Pool_ISA_Avro_Test1_S1_L001_R1_001.fastq.gz -2 /home/user/Seagate/Pool_ISA_AVRO_Test1_Run2/Pool_ISA_Avro_Test1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o /home/user/Seagate/ISseqOutput -t July24 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add_hg38.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a read > logJuly24.txt 2>&1 &
 
 # test POOL-ISA-AVRO-TEST3
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /home/ayan/Aimin/Seagate/Basespace_run_196467313/Pool-ISA-AVROtest3_S1_L001_R1_001.fastq.gz -2 /home/ayan/Aimin/Seagate/Basespace_run_196467313/Pool-ISA-AVROtest3_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST3 -o /home/ayan/Aimin/Seagate/ISseqOutput -t July27 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST3.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a read > logJuly27.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /home/user/Seagate/Basespace_run_196467313/Pool-ISA-AVROtest3_S1_L001_R1_001.fastq.gz -2 /home/user/Seagate/Basespace_run_196467313/Pool-ISA-AVROtest3_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST3 -o /home/user/Seagate/ISseqOutput -t July27 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST3.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a read > logJuly27.txt 2>&1 &
 
 # test POOL ISA AVRO Test4 for missingIS on hg38(note: you need run -a read analysis firstly)
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST4 -o /home/ayan/Aimin/Seagate/ISseqOutput -t Sept2 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_pool_ISA_AVRO_TEST4_add.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a missingIS > logSept2MissingIS.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST4 -o /home/user/Seagate/ISseqOutput -t Sept2 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_pool_ISA_AVRO_TEST4_add.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a missingIS > logSept2MissingIS.txt 2>&1 &
 
 # test POOL ISA AVRO Test4 for missingIS on hg19(note: you need run -a read analysis firstly)
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST4 -o /home/ayan/Aimin/Seagate/ISseqOutput -t Sept2 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_pool_ISA_AVRO_TEST4_add_hg19.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a missingIS   > logSept2MissingIS.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST4 -o /home/user/Seagate/ISseqOutput -t Sept2 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_pool_ISA_AVRO_TEST4_add_hg19.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a missingIS   > logSept2MissingIS.txt 2>&1 &
 
 # test POOL ISA AVRO Test4 for VectorCount on hg19(note: you need run -a read analysis firstly)
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST4 -o /home/ayan/Aimin/Seagate/ISseqOutput -t Sept2 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_pool_ISA_AVRO_TEST4_add_hg19.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a VectorCount > logSept2VectorCount.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST4 -o /home/user/Seagate/ISseqOutput -t Sept2 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_pool_ISA_AVRO_TEST4_add_hg19.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a VectorCount > logSept2VectorCount.txt 2>&1 &
 
 # test POOL ISA AVRO Test4 for VectorCount on hg19(note: you need run -a read analysis firstly)
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST4 -o /home/ayan/Aimin/Seagate/ISseqOutput -t Sept2 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_pool_ISA_AVRO_TEST4_add_hg19.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a align2Vector > logSept2align2vector.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST4 -o /home/user/Seagate/ISseqOutput -t Sept2 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_pool_ISA_AVRO_TEST4_add_hg19.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a align2Vector > logSept2align2vector.txt 2>&1 &
 
 # test /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco.csv
 
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-1 -o /home/ayan/Aimin/Seagate/ISseqOutput -t Oct19 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a align2Vector > logOct19.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-1 -o /home/user/Seagate/ISseqOutput -t Oct19 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a align2Vector > logOct19.txt 2>&1 &
 
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-1 -o /home/ayan/Aimin/Seagate/ISseqOutput -t Oct19 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a read > logOct19read.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-1 -o /home/user/Seagate/ISseqOutput -t Oct19 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a read > logOct19read.txt 2>&1 &
 
-Rscript $HOME/Aimin/IS-Seq/utils/getReadsFromSam.R -n "pCDY.EFS.GlucoCco" -v /home/ayan/Aimin/Seagate/ISseqOutput/Oct19/vector/align -a /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco.csv -o /home/ayan/Aimin/Seagate/ISseqOutput/Oct19/total_vector_host_sam.rds
+Rscript $HOME/user/IS-Seq/utils/getReadsFromSam.R -n "pCDY.EFS.GlucoCco" -v /home/user/Seagate/ISseqOutput/Oct19/vector/align -a /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco.csv -o /home/user/Seagate/ISseqOutput/Oct19/total_vector_host_sam.rds
 
 # test POOL-ISA-AVRO-1
 
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-1 -o /home/ayan/Aimin/Seagate/ISseqOutput -t Oct22 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco_hg38.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a read > logOct22.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-1 -o /home/user/Seagate/ISseqOutput -t Oct22 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco_hg38.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a read > logOct22.txt 2>&1 &
 
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-1 -o /home/ayan/Aimin/Seagate/ISseqOutput -t Oct22 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco_hg38.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a umi > logOct22umi.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-1 -o /home/user/Seagate/ISseqOutput -t Oct22 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco_hg38.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a umi > logOct22umi.txt 2>&1 &
 
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-1 -o /home/ayan/Aimin/Seagate/ISseqOutput -t Oct22 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco_hg38.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a fragment > logOct22fragment.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-1 -o /home/user/Seagate/ISseqOutput -t Oct22 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco_hg38.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a fragment > logOct22fragment.txt 2>&1 &
 
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-1 -o /home/ayan/Aimin/Seagate/ISseqOutput -t Oct22 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco_hg38.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a missingIS > logOct22missingIS.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-1 -o /home/user/Seagate/ISseqOutput -t Oct22 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco_hg38.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a missingIS > logOct22missingIS.txt 2>&1 &
 
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-1 -o /home/ayan/Aimin/Seagate/ISseqOutput -t Oct22 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco_hg38.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a VectorCount > logOct22VectorCount.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-1 -o /home/user/Seagate/ISseqOutput -t Oct22 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco_hg38.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a VectorCount > logOct22VectorCount.txt 2>&1 &
 
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-1 -o /home/ayan/Aimin/Seagate/ISseqOutput -t Oct22 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco_hg38.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a align2Vector > logOct22align2Vector.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-1 -o /home/user/Seagate/ISseqOutput -t Oct22 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco_hg38.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a align2Vector > logOct22align2Vector.txt 2>&1 &
 
-Rscript $HOME/Aimin/IS-Seq/utils/getReadsFromSam.R -n 'pCDY.EFS.GlucoCco' -v /home/ayan/Aimin/Seagate/ISseqOutput/Oct22/vector/align -a /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco_hg38.csv -o /home/ayan/Aimin/Seagate/ISseqOutput/Oct22/total_vector_host_sam.rds
+Rscript $HOME/user/IS-Seq/utils/getReadsFromSam.R -n 'pCDY.EFS.GlucoCco' -v /home/user/Seagate/ISseqOutput/Oct22/vector/align -a /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco_hg38.csv -o /home/user/Seagate/ISseqOutput/Oct22/total_vector_host_sam.rds
 
 # run on hg19
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-1 -o /home/ayan/Aimin/Seagate/ISseqOutput -t Hg19Oct22 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a read > logHg19Oct22Read.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-1 -o /home/user/Seagate/ISseqOutput -t Hg19Oct22 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a read > logHg19Oct22Read.txt 2>&1 &
 
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-1 -o /home/ayan/Aimin/Seagate/ISseqOutput -t Hg19Oct22 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a umi > logHg19Oct22umi.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-1 -o /home/user/Seagate/ISseqOutput -t Hg19Oct22 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a umi > logHg19Oct22umi.txt 2>&1 &
 
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-1 -o /home/ayan/Aimin/Seagate/ISseqOutput -t Hg19Oct22 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a fragment > logHg19Oct22fragment.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-1 -o /home/user/Seagate/ISseqOutput -t Hg19Oct22 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a fragment > logHg19Oct22fragment.txt 2>&1 &
 
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-1 -o /home/ayan/Aimin/Seagate/ISseqOutput -t Hg19Oct22 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a align2Vector > logHg19Oct22align2Vector.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197984856/ISA_POOL_AVRO1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-1 -o /home/user/Seagate/ISseqOutput -t Hg19Oct22 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a align2Vector > logHg19Oct22align2Vector.txt 2>&1 &
 
-Rscript $HOME/Aimin/IS-Seq/utils/getReadsFromSam.R -n 'pCDY.EFS.GlucoCco' -v /home/ayan/Aimin/Seagate/ISseqOutput/Hg19Oct22/vector/align -a /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco.csv -o /home/ayan/Aimin/Seagate/ISseqOutput/Hg19Oct22/total_vector_host_sam.rds
+Rscript $HOME/user/IS-Seq/utils/getReadsFromSam.R -n 'pCDY.EFS.GlucoCco' -v /home/user/Seagate/ISseqOutput/Hg19Oct22/vector/align -a /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_1_GlucoCco.csv -o /home/user/Seagate/ISseqOutput/Hg19Oct22/total_vector_host_sam.rds
 
 # run on hg19 on aws
 
@@ -438,26 +425,26 @@ nohup python -u /home/ubuntu/IS-Seq/IS-SeqlineFv3_test.py -1 /home/ubuntu/SHARE/
 
 # test POOL-ISA-AVRO-2
 
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_198158076/ISA_POOL_AVRO2_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_198158076/ISA_POOL_AVRO2_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-2 -o /home/ayan/Aimin/Seagate/ISseqOutput -t Oct23 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_2_GlucoCco_hg38.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a read > logOct23Read.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_198158076/ISA_POOL_AVRO2_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_198158076/ISA_POOL_AVRO2_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-2 -o /home/user/Seagate/ISseqOutput -t Oct23 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_2_GlucoCco_hg38.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a read > logOct23Read.txt 2>&1 &
 
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_198158076/ISA_POOL_AVRO2_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_198158076/ISA_POOL_AVRO2_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-2 -o /home/ayan/Aimin/Seagate/ISseqOutput -t Oct25 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_2_GlucoCco_hg38.csv
--u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a umi > logOct25umi.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_198158076/ISA_POOL_AVRO2_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_198158076/ISA_POOL_AVRO2_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-2 -o /home/user/Seagate/ISseqOutput -t Oct25 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_2_GlucoCco_hg38.csv
+-u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a umi > logOct25umi.txt 2>&1 &
 
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_198158076/ISA_POOL_AVRO2_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_198158076/ISA_POOL_AVRO2_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-2 -o /home/ayan/Aimin/Seagate/ISseqOutput -t Oct25 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_2_GlucoCco_hg38.csv
--u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a fragment > logOct25fragment.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_198158076/ISA_POOL_AVRO2_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_198158076/ISA_POOL_AVRO2_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-2 -o /home/user/Seagate/ISseqOutput -t Oct25 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_2_GlucoCco_hg38.csv
+-u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a fragment > logOct25fragment.txt 2>&1 &
 
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_198158076/ISA_POOL_AVRO2_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_198158076/ISA_POOL_AVRO2_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-2 -o /home/ayan/Aimin/Seagate/ISseqOutput -t Oct25 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_2_GlucoCco_hg38.csv
--u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a align2Vector > logOct25align2Vector.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_198158076/ISA_POOL_AVRO2_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_198158076/ISA_POOL_AVRO2_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-2 -o /home/user/Seagate/ISseqOutput -t Oct25 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_2_GlucoCco_hg38.csv
+-u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a align2Vector > logOct25align2Vector.txt 2>&1 &
 
-Rscript $HOME/Aimin/IS-Seq/utils/getReadsFromSam.R -n 'pCDY.EFS.GlucoCco' -v /home/ayan/Aimin/Seagate/ISseqOutput/Oct25/vector/align -a /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_2_GlucoCco_hg38.csv -o /home/ayan/Aimin/Seagate/ISseqOutput/Oct25/total_vector_host_sam.rds
+Rscript $HOME/user/IS-Seq/utils/getReadsFromSam.R -n 'pCDY.EFS.GlucoCco' -v /home/user/Seagate/ISseqOutput/Oct25/vector/align -a /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_2_GlucoCco_hg38.csv -o /home/user/Seagate/ISseqOutput/Oct25/total_vector_host_sam.rds
 ```
 
 You can find the ouput results in the following
     folders:
 
-    /home/ayan/Aimin/IS-Seq/ISseqOutput/Mar06/CutAdapt/filterNo/db/Mar06/FinalOut_Mar06/
+    /home/user/IS-Seq/ISseqOutput/Mar06/CutAdapt/filterNo/db/Mar06/FinalOut_Mar06/
     
-    /home/ayan/Aimin/IS-Seq/ISseqOutput/Mar06/CutAdapt/filter60/db/Mar06/FinalOut_Mar06/
+    /home/user/IS-Seq/ISseqOutput/Mar06/CutAdapt/filter60/db/Mar06/FinalOut_Mar06/
 
 Note, IS-Seq has flexibilities to let users define input file and output
 file path to NAS(Network-Attached Storage). To do this on Linux machine
@@ -491,32 +478,31 @@ then you can access NAS in /media/nas
 ### To get UmiBased results, you need to run the following command:
 
 ``` bash
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /home/ayan/Aimin/IS-Seq/data/PL0431_S1_L001_R1_001.fastq.gz -2 /home/ayan/Aimin/IS-Seq/data/PL0431_S1_L001_R2_001.fastq.gz -s POOL-UCL-CPL-Re -o /home/ayan/Aimin/IS-Seq/ISseqOutput -t Mar06 -r /home/ayan/Aimin/IS-Seq/sample_research/Association_pool_CPL_Nov19Fix.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a umi > logMar06.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /home/user/IS-Seq/data/PL0431_S1_L001_R1_001.fastq.gz -2 /home/user/IS-Seq/data/PL0431_S1_L001_R2_001.fastq.gz -s POOL-UCL-CPL-Re -o /home/user/IS-Seq/ISseqOutput -t Mar06 -r /home/user/IS-Seq/sample_research/Association_pool_CPL_Nov19Fix.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a umi > logMar06.txt 2>&1 &
 
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/nas/BIASCO_Archive_Test_Folder/Basespace_Illumina_runs/Basespace_run_194642476/Data/Intensities/BaseCalls/Undetermined_S0_L001_R1_001.fastq.gz -2 /media/nas/BIASCO_Archive_Test_Folder/Basespace_Illumina_runs/Basespace_run_194642476/Data/Intensities/BaseCalls/Undetermined_S0_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o /home/ayan/Aimin/IS-Seq/ISseqOutput -t Apr13 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a umi > logApr13_umi.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/nas/BIASCO_Archive_Test_Folder/Basespace_Illumina_runs/Basespace_run_194642476/Data/Intensities/BaseCalls/Undetermined_S0_L001_R1_001.fastq.gz -2 /media/nas/BIASCO_Archive_Test_Folder/Basespace_Illumina_runs/Basespace_run_194642476/Data/Intensities/BaseCalls/Undetermined_S0_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o /home/user/IS-Seq/ISseqOutput -t Apr13 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a umi > logApr13_umi.txt 2>&1 &
 
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /home/ayan/Aimin/Seagate/Pool_ISA_AVRO_Test1_Run2/Pool_ISA_Avro_Test1_S1_L001_R1_001.fastq.gz -2 /home/ayan/Aimin/Seagate/Pool_ISA_AVRO_Test1_Run2/Pool_ISA_Avro_Test1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o /home/ayan/Aimin/Seagate/ISseqOutput -t May1 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a umi > logMay1_umi.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /home/user/Seagate/Pool_ISA_AVRO_Test1_Run2/Pool_ISA_Avro_Test1_S1_L001_R1_001.fastq.gz -2 /home/user/Seagate/Pool_ISA_AVRO_Test1_Run2/Pool_ISA_Avro_Test1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o /home/user/Seagate/ISseqOutput -t May1 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a umi > logMay1_umi.txt 2>&1 &
 
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /home/ayan/Aimin/Seagate/Pool_ISA_AVRO_Test2/EXP39_ISA_pool_2_S1_L001_R1_001.fastq.gz -2 /home/ayan/Aimin/Seagate/Pool_ISA_AVRO_Test2/EXP39_ISA_pool_2_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST2 -o /home/ayan/Aimin/Seagate/ISseqOutput -t June24 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST2_add_CB.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a umi > logJune24_umi.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /home/user/Seagate/Pool_ISA_AVRO_Test2/EXP39_ISA_pool_2_S1_L001_R1_001.fastq.gz -2 /home/user/Seagate/Pool_ISA_AVRO_Test2/EXP39_ISA_pool_2_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST2 -o /home/user/Seagate/ISseqOutput -t June24 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST2_add_CB.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a umi > logJune24_umi.txt 2>&1 &
 
 # test hg38
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /home/ayan/Aimin/Seagate/Pool_ISA_AVRO_Test1_Run2/Pool_ISA_Avro_Test1_S1_L001_R1_001.fastq.gz -2 /home/ayan/Aimin/Seagate/Pool_ISA_AVRO_Test1_Run2/Pool_ISA_Avro_Test1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o /home/ayan/Aimin/Seagate/ISseqOutput -t July24 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add_hg38.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a umi > logJuly24-Umi.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /home/user/Seagate/Pool_ISA_AVRO_Test1_Run2/Pool_ISA_Avro_Test1_S1_L001_R1_001.fastq.gz -2 /home/user/Seagate/Pool_ISA_AVRO_Test1_Run2/Pool_ISA_Avro_Test1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o /home/user/Seagate/ISseqOutput -t July24 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add_hg38.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a umi > logJuly24-Umi.txt 2>&1 &
 
 # test POOL ISA AVRO Test4
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST4 -o /home/ayan/Aimin/Seagate/ISseqOutput -t Sept2 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_pool_ISA_AVRO_TEST4_add_hg19.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a umi -v NotAddVect > logSept2_umi.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST4 -o /home/user/Seagate/ISseqOutput -t Sept2 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_pool_ISA_AVRO_TEST4_add_hg19.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a umi -v NotAddVect > logSept2_umi.txt 2>&1 &
 ```
 
 You can find UMI based outputs in the following
     resutls:
 
-    /home/ayan/Aimin/IS-Seq/ISseqOutput/Mar06/UmiBased/collision/Lenti_Human/filterNo/db/Mar06/FinalOut_Mar06
-    /home/ayan/Aimin/IS-Seq/ISseqOutput/Mar06/UmiBased/collision/Lenti_Human/filter60/db/Mar06/FinalOut_Mar06
+    /home/user/IS-Seq/ISseqOutput/Mar06/UmiBased/collision/Lenti_Human/filterNo/db/Mar06/FinalOut_Mar06
+    /home/user/IS-Seq/ISseqOutput/Mar06/UmiBased/collision/Lenti_Human/filter60/db/Mar06/FinalOut_Mar06
 
 You can also check the number of reads that have same UMI in the
-following
-    folder:
+following folder:
 
-    /home/ayan/Aimin/IS-Seq/ISseqOutput/Mar06/UmiBased/UmiCluster/UmiBarPlots
+    /home/user/IS-Seq/ISseqOutput/Mar06/UmiBased/UmiCluster/UmiBarPlots
 
 e.g. this following figure shows the distribution of reads in top 100
 UMIs before alignment ![umi](doc/allFiles_UMI.png) We also include the
@@ -527,29 +513,29 @@ UMIs after paired-end alignment:
 ### To get FragmentBased results, you need to run the following command:
 
 ``` bash
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /home/ayan/Aimin/IS-Seq/data/PL0431_S1_L001_R1_001.fastq.gz -2 /home/ayan/Aimin/IS-Seq/data/PL0431_S1_L001_R2_001.fastq.gz -s POOL-UCL-CPL-Re -o /home/ayan/Aimin/IS-Seq/ISseqOutput -t Mar06 -r /home/ayan/Aimin/IS-Seq/sample_research/Association_pool_CPL_Nov19Fix.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a fragment > logMar06.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /home/user/IS-Seq/data/PL0431_S1_L001_R1_001.fastq.gz -2 /home/user/IS-Seq/data/PL0431_S1_L001_R2_001.fastq.gz -s POOL-UCL-CPL-Re -o /home/user/IS-Seq/ISseqOutput -t Mar06 -r /home/user/IS-Seq/sample_research/Association_pool_CPL_Nov19Fix.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a fragment > logMar06.txt 2>&1 &
 
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/nas/BIASCO_Archive_Test_Folder/Basespace_Illumina_runs/Basespace_run_194642476/Data/Intensities/BaseCalls/Undetermined_S0_L001_R1_001.fastq.gz -2 /media/nas/BIASCO_Archive_Test_Folder/Basespace_Illumina_runs/Basespace_run_194642476/Data/Intensities/BaseCalls/Undetermined_S0_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o /home/ayan/Aimin/IS-Seq/ISseqOutput -t Apr13 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a fragment > logApr13_fragment.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/nas/BIASCO_Archive_Test_Folder/Basespace_Illumina_runs/Basespace_run_194642476/Data/Intensities/BaseCalls/Undetermined_S0_L001_R1_001.fastq.gz -2 /media/nas/BIASCO_Archive_Test_Folder/Basespace_Illumina_runs/Basespace_run_194642476/Data/Intensities/BaseCalls/Undetermined_S0_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o /home/user/IS-Seq/ISseqOutput -t Apr13 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a fragment > logApr13_fragment.txt 2>&1 &
 
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /home/ayan/Aimin/Seagate/Pool_ISA_AVRO_Test1_Run2/Pool_ISA_Avro_Test1_S1_L001_R1_001.fastq.gz -2 /home/ayan/Aimin/Seagate/Pool_ISA_AVRO_Test1_Run2/Pool_ISA_Avro_Test1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o /home/ayan/Aimin/Seagate/ISseqOutput -t May1 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a fragment> logMay1_fragment.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /home/user/Seagate/Pool_ISA_AVRO_Test1_Run2/Pool_ISA_Avro_Test1_S1_L001_R1_001.fastq.gz -2 /home/user/Seagate/Pool_ISA_AVRO_Test1_Run2/Pool_ISA_Avro_Test1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o /home/user/Seagate/ISseqOutput -t May1 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a fragment> logMay1_fragment.txt 2>&1 &
 
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /home/ayan/Aimin/Seagate/Pool_ISA_AVRO_Test2/EXP39_ISA_pool_2_S1_L001_R1_001.fastq.gz -2 /home/ayan/Aimin/Seagate/Pool_ISA_AVRO_Test2/EXP39_ISA_pool_2_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST2 -o /home/ayan/Aimin/Seagate/ISseqOutput -t June24 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST2_add_CB.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a fragment > logJune24_fragment.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /home/user/Seagate/Pool_ISA_AVRO_Test2/EXP39_ISA_pool_2_S1_L001_R1_001.fastq.gz -2 /home/user/Seagate/Pool_ISA_AVRO_Test2/EXP39_ISA_pool_2_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST2 -o /home/user/Seagate/ISseqOutput -t June24 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST2_add_CB.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a fragment > logJune24_fragment.txt 2>&1 &
 
 # test hg38
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /home/ayan/Aimin/Seagate/Pool_ISA_AVRO_Test1_Run2/Pool_ISA_Avro_Test1_S1_L001_R1_001.fastq.gz -2 /home/ayan/Aimin/Seagate/Pool_ISA_AVRO_Test1_Run2/Pool_ISA_Avro_Test1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o /home/ayan/Aimin/Seagate/ISseqOutput -t July24 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add_hg38.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a fragment > logJuly24-fragment.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /home/user/Seagate/Pool_ISA_AVRO_Test1_Run2/Pool_ISA_Avro_Test1_S1_L001_R1_001.fastq.gz -2 /home/user/Seagate/Pool_ISA_AVRO_Test1_Run2/Pool_ISA_Avro_Test1_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o /home/user/Seagate/ISseqOutput -t July24 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add_hg38.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a fragment > logJuly24-fragment.txt 2>&1 &
 
 # test POOL-ISA-AVRO-TEST3
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /home/ayan/Aimin/Seagate/Basespace_run_196467313/Pool-ISA-AVROtest3_S1_L001_R1_001.fastq.gz -2 /home/ayan/Aimin/Seagate/Basespace_run_196467313/Pool-ISA-AVROtest3_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST3 -o /home/ayan/Aimin/Seagate/ISseqOutput -t July27 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST3.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a fragment > logJuly27_fragment.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /home/user/Seagate/Basespace_run_196467313/Pool-ISA-AVROtest3_S1_L001_R1_001.fastq.gz -2 /home/user/Seagate/Basespace_run_196467313/Pool-ISA-AVROtest3_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST3 -o /home/user/Seagate/ISseqOutput -t July27 -r /media/nas/MiSeqTest/Association_pool_ISA_AVRO_TEST3.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a fragment > logJuly27_fragment.txt 2>&1 &
 
 # test POOL ISA AVRO Test4
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST4 -o /home/ayan/Aimin/Seagate/ISseqOutput -t Sept2 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_pool_ISA_AVRO_TEST4_add_hg19.csv -u /home/ayan/Aimin/IS-Seq/utilsRefData -p /home/ayan/Aimin/IS-Seq/utils -a fragment -v NotAddVect > logSept2_fragment.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_197070906/POOL_ISA_AVRO_Test4_S1_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST4 -o /home/user/Seagate/ISseqOutput -t Sept2 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_pool_ISA_AVRO_TEST4_add_hg19.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a fragment -v NotAddVect > logSept2_fragment.txt 2>&1 &
 ```
 
 You can find fragment based outputs in the following
     folders:
 
-    /home/ayan/Aimin/IS-Seq/ISseqOutput/Mar06/FragmentBased/collision/Lenti_Human/filterNo/db/Mar06/FinalOut_Mar06
-    /home/ayan/Aimin/IS-Seq/ISseqOutput/Mar06/FragmentBased/collision/Lenti_Human/filter60/db/Mar06/FinalOut_Mar06
+    /home/user/IS-Seq/ISseqOutput/Mar06/FragmentBased/collision/Lenti_Human/filterNo/db/Mar06/FinalOut_Mar06
+    /home/user/IS-Seq/ISseqOutput/Mar06/FragmentBased/collision/Lenti_Human/filter60/db/Mar06/FinalOut_Mar06
 
 Notes : For one sample of paired-end data with R1(2.4G) and R2(2.6G),
 you need to have 145G work space for read, umi and fragment based
@@ -562,31 +548,31 @@ methods
 ### To backup data to Egnyte, you need to run the following command:
 
 ``` bash
-tar -czvf ~/Aimin/UploadToEgnyte/Mar06.tar.gz /home/ayan/Aimin/IS-Seq/ISseqOutput/Mar06
+tar -czvf ~/user/UploadToEgnyte/Mar06.tar.gz /home/user/IS-Seq/ISseqOutput/Mar06
 
 analysis.type='ReadBased'
 filter.type='filterNo'
 analysis.date='May1'
 
-mkdir -p ~/Aimin/UploadToEgnyte/data/May1/ReadBased/collision/Lenti_Human/filterNo/db/May1/FinalOut_May1
-cp ~/Aimin/NoMachineLinux/home/ayan/Aimin/Seagate/ISseqOutput/May1/CutAdapt/filterNo/db/May1/FinalOut_May1/POOL-ISA-AVRO-TEST1_HL60CellLine1-90-250ng0_HL60_May1_CollisionClean_CollisionTable.txt ~/Aimin/UploadToEgnyte/data/May1/ReadBased/collision/Lenti_Human/filterNo/db/May1/FinalOut_May1/.
+mkdir -p ~/user/UploadToEgnyte/data/May1/ReadBased/collision/Lenti_Human/filterNo/db/May1/FinalOut_May1
+cp ~/user/NoMachineLinux/home/user/Seagate/ISseqOutput/May1/CutAdapt/filterNo/db/May1/FinalOut_May1/POOL-ISA-AVRO-TEST1_HL60CellLine1-90-250ng0_HL60_May1_CollisionClean_CollisionTable.txt ~/user/UploadToEgnyte/data/May1/ReadBased/collision/Lenti_Human/filterNo/db/May1/FinalOut_May1/.
 
-mkdir -p ~/Aimin/UploadToEgnyte/data/May1/ReadBased/collision/Lenti_Human/filter60/db/May1/FinalOut_May1
-cp ~/Aimin/NoMachineLinux/home/ayan/Aimin/Seagate/ISseqOutput/May1/CutAdapt/filter60/db/May1/FinalOut_May1/POOL-ISA-AVRO-TEST1_HL60CellLine1-90-250ng0_HL60_May1_CollisionClean_CollisionTable.txt ~/Aimin/UploadToEgnyte/data/May1/ReadBased/collision/Lenti_Human/filter60/db/May1/FinalOut_May1/.
+mkdir -p ~/user/UploadToEgnyte/data/May1/ReadBased/collision/Lenti_Human/filter60/db/May1/FinalOut_May1
+cp ~/user/NoMachineLinux/home/user/Seagate/ISseqOutput/May1/CutAdapt/filter60/db/May1/FinalOut_May1/POOL-ISA-AVRO-TEST1_HL60CellLine1-90-250ng0_HL60_May1_CollisionClean_CollisionTable.txt ~/user/UploadToEgnyte/data/May1/ReadBased/collision/Lenti_Human/filter60/db/May1/FinalOut_May1/.
 
-mkdir -p ~/Aimin/UploadToEgnyte/data/May1/UmiBased/collision/Lenti_Human/filterNo/db/May1/FinalOut_May1
-cp ~/Aimin/NoMachineLinux/home/ayan/Aimin/Seagate/ISseqOutput/May1/UmiBased/collision/Lenti_Human/filterNo/db/May1/FinalOut_May1/POOL-ISA-AVRO-TEST1_HL60CellLine1-90-250ng0_HL60_May1_CollisionClean_CollisionTable.txt ~/Aimin/UploadToEgnyte/data/May1/UmiBased/collision/Lenti_Human/filterNo/db/May1/FinalOut_May1/.
+mkdir -p ~/user/UploadToEgnyte/data/May1/UmiBased/collision/Lenti_Human/filterNo/db/May1/FinalOut_May1
+cp ~/user/NoMachineLinux/home/user/Seagate/ISseqOutput/May1/UmiBased/collision/Lenti_Human/filterNo/db/May1/FinalOut_May1/POOL-ISA-AVRO-TEST1_HL60CellLine1-90-250ng0_HL60_May1_CollisionClean_CollisionTable.txt ~/user/UploadToEgnyte/data/May1/UmiBased/collision/Lenti_Human/filterNo/db/May1/FinalOut_May1/.
 
-mkdir -p ~/Aimin/UploadToEgnyte/data/May1/UmiBased/collision/Lenti_Human/filter60/db/May1/FinalOut_May1
-cp ~/Aimin/NoMachineLinux/home/ayan/Aimin/Seagate/ISseqOutput/May1/UmiBased/collision/Lenti_Human/filter60/db/May1/FinalOut_May1/POOL-ISA-AVRO-TEST1_HL60CellLine1-90-250ng0_HL60_May1_CollisionClean_CollisionTable.txt ~/Aimin/UploadToEgnyte/data/May1/UmiBased/collision/Lenti_Human/filter60/db/May1/FinalOut_May1/.
+mkdir -p ~/user/UploadToEgnyte/data/May1/UmiBased/collision/Lenti_Human/filter60/db/May1/FinalOut_May1
+cp ~/user/NoMachineLinux/home/user/Seagate/ISseqOutput/May1/UmiBased/collision/Lenti_Human/filter60/db/May1/FinalOut_May1/POOL-ISA-AVRO-TEST1_HL60CellLine1-90-250ng0_HL60_May1_CollisionClean_CollisionTable.txt ~/user/UploadToEgnyte/data/May1/UmiBased/collision/Lenti_Human/filter60/db/May1/FinalOut_May1/.
 
-mkdir -p ~/Aimin/UploadToEgnyte/data/May1/FragmentBased/collision/Lenti_Human/filterNo/db/May1/FinalOut_May1
+mkdir -p ~/user/UploadToEgnyte/data/May1/FragmentBased/collision/Lenti_Human/filterNo/db/May1/FinalOut_May1
 
-cp ~/Aimin/NoMachineLinux/home/ayan/Aimin/Seagate/ISseqOutput/May1/FragmentBased/collision/Lenti_Human/filterNo/db/May1/FinalOut_May1/POOL-ISA-AVRO-TEST1_HL60CellLine1-90-250ng0_HL60_May1_CollisionClean_CollisionTable.txt ~/Aimin/UploadToEgnyte/data/May1/FragmentBased/collision/Lenti_Human/filterNo/db/May1/FinalOut_May1/.
+cp ~/user/NoMachineLinux/home/user/Seagate/ISseqOutput/May1/FragmentBased/collision/Lenti_Human/filterNo/db/May1/FinalOut_May1/POOL-ISA-AVRO-TEST1_HL60CellLine1-90-250ng0_HL60_May1_CollisionClean_CollisionTable.txt ~/user/UploadToEgnyte/data/May1/FragmentBased/collision/Lenti_Human/filterNo/db/May1/FinalOut_May1/.
 
-mkdir -p ~/Aimin/UploadToEgnyte/data/May1/FragmentBased/collision/Lenti_Human/filter60/db/May1/FinalOut_May1
+mkdir -p ~/user/UploadToEgnyte/data/May1/FragmentBased/collision/Lenti_Human/filter60/db/May1/FinalOut_May1
 
-cp ~/Aimin/NoMachineLinux/home/ayan/Aimin/Seagate/ISseqOutput/May1/FragmentBased/collision/Lenti_Human/filter60/db/May1/FinalOut_May1/POOL-ISA-AVRO-TEST1_HL60CellLine1-90-250ng0_HL60_May1_CollisionClean_CollisionTable.txt ~/Aimin/UploadToEgnyte/data/May1/FragmentBased/collision/Lenti_Human/filter60/db/May1/FinalOut_May1/.
+cp ~/user/NoMachineLinux/home/user/Seagate/ISseqOutput/May1/FragmentBased/collision/Lenti_Human/filter60/db/May1/FinalOut_May1/POOL-ISA-AVRO-TEST1_HL60CellLine1-90-250ng0_HL60_May1_CollisionClean_CollisionTable.txt ~/user/UploadToEgnyte/data/May1/FragmentBased/collision/Lenti_Human/filter60/db/May1/FinalOut_May1/.
 ```
 
 ### To backup data to NAS, you need to run the following command:
@@ -597,17 +583,17 @@ filter.type=c('filter60','filterNo')
 analysis.date='June24'
 vector.type='Lenti_Mouse'
 
-#mkdir -p ~/Aimin/UploadToEgnyte/data/May1/ReadBased/collision/Lenti_Human/filterNo/db/May1/FinalOut_May1
-#cp ~/Aimin/NoMachineLinux/home/ayan/Aimin/Seagate/ISseqOutput/May1/CutAdapt/filterNo/db/May1/FinalOut_May1/POOL-ISA-AVRO-TEST1_HL60CellLine1-90-250ng0_HL60_May1_CollisionClean_CollisionTable.txt ~/Aimin/UploadToEgnyte/data/May1/ReadBased/collision/Lenti_Human/filterNo/db/May1/FinalOut_May1/.
+#mkdir -p ~/user/UploadToEgnyte/data/May1/ReadBased/collision/Lenti_Human/filterNo/db/May1/FinalOut_May1
+#cp ~/user/NoMachineLinux/home/user/Seagate/ISseqOutput/May1/CutAdapt/filterNo/db/May1/FinalOut_May1/POOL-ISA-AVRO-TEST1_HL60CellLine1-90-250ng0_HL60_May1_CollisionClean_CollisionTable.txt ~/user/UploadToEgnyte/data/May1/ReadBased/collision/Lenti_Human/filterNo/db/May1/FinalOut_May1/.
 
 new.folder <- unlist(lapply(analysis.type, function(u){
   lapply(filter.type, function(v){
-    new.folder <- file.path('~/Aimin/UploadToEgnyte/data',analysis.date,u,'collision',vector.type,v,'db',analysis.date,paste0('FinalOut_',analysis.date))
+    new.folder <- file.path('~/user/UploadToEgnyte/data',analysis.date,u,'collision',vector.type,v,'db',analysis.date,paste0('FinalOut_',analysis.date))
   })
 }))
 
 # find the files that you want
-current.folder <- "/home/ayan/Aimin/Seagate/ISseqOutput/June24"
+current.folder <- "/home/user/Seagate/ISseqOutput/June24"
 list.of.files <- list.files(current.folder, "*CollisionClean_CollisionTable.txt$",recursive = TRUE,full.names = TRUE,all.files = TRUE,include.dirs = TRUE)
 
 df <- data.frame(file=list.of.files,folder=new.folder)
@@ -628,9 +614,9 @@ null <- apply(df,1,function(u){
 
 ``` bash
 
-/usr/local/bin/Rscript -e "rmarkdown::render('~/Aimin/IS-Seq/doc/report_Sept_2_2020_MiSeq_human_hg19.Rmd',output_dir='~/Aimin/IS-Seq/doc/',output_file='report_Sept_2_2020_MiSeq_human_hg19_test.html',params = list(inputCountTable='/Users/aiminyan/Aimin/UploadToEgnyte/data/Sept2',inputBand='/Volumes/share/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_pool_ISA_AVRO_TEST4_add_hg19.csv',inputrds='/Users/aiminyan/Aimin/NoMachineLinux/home/ayan/Aimin/Seagate/ISseqOutput/Sept2/TotalReads/totalReads.rds',inputmissing='/Users/aiminyan/Aimin/NoMachineLinux/home/ayan/Aimin/Seagate/ISseqOutput/Sept2/CutAdapt/missingIS/missingReads.rds',inputhost='/Users/aiminyan/Aimin/NoMachineLinux/home/ayan/Aimin/Seagate/ISseqOutput/Sept2/CutAdapt/totalReads.rds',inputvector='/Users/aiminyan/Aimin/NoMachineLinux/home/ayan/Aimin/Seagate/ISseqOutput/Sept2/vector/vectorReads.rds',inputvectorFq='/Users/aiminyan/Aimin/NoMachineLinux/home/ayan/Aimin/Seagate/ISseqOutput/Sept2/vector/countFromFq',inputvectorhostrest='/Users/aiminyan/Aimin/NoMachineLinux/home/ayan/Aimin/Seagate/ISseqOutput/Sept2/total_vector_host_sam.rds'))"
+/usr/local/bin/Rscript -e "rmarkdown::render('~/user/IS-Seq/doc/report_Sept_2_2020_MiSeq_human_hg19.Rmd',output_dir='~/user/IS-Seq/doc/',output_file='report_Sept_2_2020_MiSeq_human_hg19_test.html',params = list(inputCountTable='/Users/useryan/user/UploadToEgnyte/data/Sept2',inputBand='/Volumes/share/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_pool_ISA_AVRO_TEST4_add_hg19.csv',inputrds='/Users/useryan/user/NoMachineLinux/home/user/Seagate/ISseqOutput/Sept2/TotalReads/totalReads.rds',inputmissing='/Users/useryan/user/NoMachineLinux/home/user/Seagate/ISseqOutput/Sept2/CutAdapt/missingIS/missingReads.rds',inputhost='/Users/useryan/user/NoMachineLinux/home/user/Seagate/ISseqOutput/Sept2/CutAdapt/totalReads.rds',inputvector='/Users/useryan/user/NoMachineLinux/home/user/Seagate/ISseqOutput/Sept2/vector/vectorReads.rds',inputvectorFq='/Users/useryan/user/NoMachineLinux/home/user/Seagate/ISseqOutput/Sept2/vector/countFromFq',inputvectorhostrest='/Users/useryan/user/NoMachineLinux/home/user/Seagate/ISseqOutput/Sept2/total_vector_host_sam.rds'))"
 
-/usr/local/bin/Rscript -e "rmarkdown::render('~/Aimin/IS-Seq/doc/report_Sept_2_2020_MiSeq_human_hg19.Rmd',output_dir='~/Aimin/IS-Seq/doc/',output_file='report_Sept_2_2020_MiSeq_human_hg19_host_vector_fq_sam.html',params = list(inputCountTable='/Users/aiminyan/Aimin/UploadToEgnyte/data/Sept2',inputBand='/Volumes/share/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_pool_ISA_AVRO_TEST4_add_hg19.csv',inputrds='/Users/aiminyan/Aimin/NoMachineLinux/home/ayan/Aimin/Seagate/ISseqOutput/Sept2/TotalReads/totalReads.rds',inputmissing='/Users/aiminyan/Aimin/NoMachineLinux/home/ayan/Aimin/Seagate/ISseqOutput/Sept2/CutAdapt/missingIS/missingReads.rds',inputhost='/Users/aiminyan/Aimin/NoMachineLinux/home/ayan/Aimin/Seagate/ISseqOutput/Sept2/CutAdapt/totalReads.rds',inputvector='/Users/aiminyan/Aimin/NoMachineLinux/home/ayan/Aimin/Seagate/ISseqOutput/Sept2/vector/vectorReads.rds',inputvectorFq='/Users/aiminyan/Aimin/NoMachineLinux/home/ayan/Aimin/Seagate/ISseqOutput/Sept2/vector/countFromFq',inputvectorhostrest='/Users/aiminyan/Aimin/NoMachineLinux/home/ayan/Aimin/Seagate/ISseqOutput/Sept2/total_vector_host_sam.rds',inputvectorhostrest1='/Users/aiminyan/Aimin/NoMachineLinux/home/ayan/Aimin/Seagate/ISseqOutput/July27/total_vector_host_sam.rds',inputvectorhostrest2='/Users/aiminyan/Aimin/NoMachineLinux/home/ayan/Aimin/Seagate/ISseqOutput/June24/total_vector_host_sam.rds',inputvectorhostrest3='/Users/aiminyan/Aimin/NoMachineLinux/home/ayan/Aimin/Seagate/ISseqOutput/May1/total_vector_host_sam.rds'))"
+/usr/local/bin/Rscript -e "rmarkdown::render('~/user/IS-Seq/doc/report_Sept_2_2020_MiSeq_human_hg19.Rmd',output_dir='~/user/IS-Seq/doc/',output_file='report_Sept_2_2020_MiSeq_human_hg19_host_vector_fq_sam.html',params = list(inputCountTable='/Users/useryan/user/UploadToEgnyte/data/Sept2',inputBand='/Volumes/share/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_pool_ISA_AVRO_TEST4_add_hg19.csv',inputrds='/Users/useryan/user/NoMachineLinux/home/user/Seagate/ISseqOutput/Sept2/TotalReads/totalReads.rds',inputmissing='/Users/useryan/user/NoMachineLinux/home/user/Seagate/ISseqOutput/Sept2/CutAdapt/missingIS/missingReads.rds',inputhost='/Users/useryan/user/NoMachineLinux/home/user/Seagate/ISseqOutput/Sept2/CutAdapt/totalReads.rds',inputvector='/Users/useryan/user/NoMachineLinux/home/user/Seagate/ISseqOutput/Sept2/vector/vectorReads.rds',inputvectorFq='/Users/useryan/user/NoMachineLinux/home/user/Seagate/ISseqOutput/Sept2/vector/countFromFq',inputvectorhostrest='/Users/useryan/user/NoMachineLinux/home/user/Seagate/ISseqOutput/Sept2/total_vector_host_sam.rds',inputvectorhostrest1='/Users/useryan/user/NoMachineLinux/home/user/Seagate/ISseqOutput/July27/total_vector_host_sam.rds',inputvectorhostrest2='/Users/useryan/user/NoMachineLinux/home/user/Seagate/ISseqOutput/June24/total_vector_host_sam.rds',inputvectorhostrest3='/Users/useryan/user/NoMachineLinux/home/user/Seagate/ISseqOutput/May1/total_vector_host_sam.rds'))"
 ```
 
   - Command line arguments:
@@ -659,10 +645,10 @@ files
 ``` bash
 
 # run the previous run firstly, note: in this run, the previous folder is nothing
-sh /home/ayan/Aimin/IS-Seq/bash/ISpipleOct22New.sh
+sh /home/user/IS-Seq/bash/ISpipleOct22New.sh
 
 # then run the current run after finishing the previous run, note: the previous folder need to be included in -c 
-sh /home/ayan/Aimin/IS-Seq/bash/ISpipleOct23New.sh
+sh /home/user/IS-Seq/bash/ISpipleOct23New.sh
 ```
 
 ### To add new vector:
@@ -672,19 +658,19 @@ For example :
 pCDY-EFS-hGLAco
 
 do the following:
-mkdir /home/ayan/Aimin/IS-Seq/utilsRefData/vector/pCDY-EFS-hGLAco
-add /home/ayan/Aimin/IS-Seq/utilsRefData/vector/pCDY-EFS-hGLAco/pCDY-EFS-hGLAco_LTRtoLTR.fa
-add /home/ayan/Aimin/IS-Seq/utilsRefData/vector/pCDY-EFS-hGLAco/vector_genome_sorted.txt
-add /home/ayan/Aimin/IS-Seq/utilsRefData/vector/pCDY-EFS-hGLAco/vector_chr_list_num.txt
+mkdir /home/user/IS-Seq/utilsRefData/vector/pCDY-EFS-hGLAco
+add /home/user/IS-Seq/utilsRefData/vector/pCDY-EFS-hGLAco/pCDY-EFS-hGLAco_LTRtoLTR.fa
+add /home/user/IS-Seq/utilsRefData/vector/pCDY-EFS-hGLAco/vector_genome_sorted.txt
+add /home/user/IS-Seq/utilsRefData/vector/pCDY-EFS-hGLAco/vector_chr_list_num.txt
 
 and make bwa index for this new vector:
 
-bwa index -a bwtsw /home/ayan/Aimin/IS-Seq/utilsRefData/vector/pCDY-EFS-hGLAco/pCDY-EFS-hGLAco_LTRtoLTR.fa
+bwa index -a bwtsw /home/user/IS-Seq/utilsRefData/vector/pCDY-EFS-hGLAco/pCDY-EFS-hGLAco_LTRtoLTR.fa
 
 push 'add pCDY-EFS-hGLAco vector' Commit in IS-SeqlineFv3_test.py
 
 and change vector name for the folowing run:
-Rscript $HOME/Aimin/IS-Seq/utils/getReadsFromSam.R -n 'pCDY-EFS-hGLAco_LTRtoLTR' -v /home/ayan/Aimin/Seagate/ISseqOutput/Dec18/vector/align -a /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/20201219_AssociationFIle_CLINICAL_ALL_aimin.csv -b 'POOL-ISA-AVRO-4' -o /home/ayan/Aimin/Seagate/ISseqOutput/Dec18/total_vector_host_sam.rds
+Rscript $HOME/user/IS-Seq/utils/getReadsFromSam.R -n 'pCDY-EFS-hGLAco_LTRtoLTR' -v /home/user/Seagate/ISseqOutput/Dec18/vector/align -a /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/20201219_AssociationFIle_CLINICAL_ALL_user.csv -b 'POOL-ISA-AVRO-4' -o /home/user/Seagate/ISseqOutput/Dec18/total_vector_host_sam.rds
 ```
 
 ### Other runs we have tested
@@ -695,21 +681,34 @@ Rscript $HOME/Aimin/IS-Seq/utils/getReadsFromSam.R -n 'pCDY-EFS-hGLAco_LTRtoLTR'
 
 nohup bcl2fastq --runfolder-dir /media/BaseSpace/Runs/POOL_ISA_AVRO_CLIN_1.3/Files --output-dir /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_198478365 > logNov14ToFq.txt 2>&1 &
 
-sh /home/ayan/Aimin/IS-Seq/bash/ISpipleNov12.sh
+sh /home/user/IS-Seq/bash/ISpipleNov12.sh
 
 #POOL_ISA_CLIN_AVRO_2.2
-sh ~/Aimin/IS-Seq/bash/ISpipleNov19.sh
+sh ~/user/IS-Seq/bash/ISpipleNov19.sh
 
 # POOL_ISA_CLIN_AVRO3
 
-bwa index -a bwtsw /home/ayan/Aimin/IS-Seq/utilsRefData/vector/IUPF-CTNS/IUVPF_CTNS_LTRtoLTR.fa
-sh /home/ayan/Aimin/IS-Seq/bash/ISpipleNov23.sh
+bwa index -a bwtsw /home/user/IS-Seq/utilsRefData/vector/IUPF-CTNS/IUVPF_CTNS_LTRtoLTR.fa
+sh /home/user/IS-Seq/bash/ISpipleNov23.sh
 
 # Basespace_runs 198690515
 
 nohup bcl2fastq --runfolder-dir /media/aws_share/D32_Platform_Development/test/01_RawData/Basespace_Illumina_runs/External/UCL_runs/Basespace_runs/198690515 --output-dir /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/External/UCL_runs/Fastq_Illumina_runs/198690515_fastq > log198690515ToFq.txt 2>&1 &
 
-nohup python -u /home/ayan/Aimin/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/External/UCL_runs/Fastq_Illumina_runs/198690515_fastq/PR0375/PL0699_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/External/UCL_runs/Fastq_Illumina_runs/198690515_fastq/PR0375/PL0699_S1_L001_R2_001.fastq.gz -s POOL-UCL-LVCPL10-17 -o /media/aws_share/ISseqOutput -t Nov30 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_files_UCLLVCPL10andCPL17.csv -u /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/utilsRefData -p /media/aws_share/IS-Seq/utils -a read -c nothing > log198690515Read.txt 2>&1 &
+nohup python -u /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/External/UCL_runs/Fastq_Illumina_runs/198690515_fastq/PR0375/PL0699_S1_L001_R1_001.fastq.gz -2 /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/External/UCL_runs/Fastq_Illumina_runs/198690515_fastq/PR0375/PL0699_S1_L001_R2_001.fastq.gz -s POOL-UCL-LVCPL10-17 -o /media/aws_share/ISseqOutput -t Nov30 -r /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_files_UCLLVCPL10andCPL17.csv -u /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/utilsRefData -p /media/aws_share/IS-Seq/utils -a read -c nothing > log198690515Read.txt 2>&1 &
+```
+
+## Update
+
+IS-Seq use the “Latest” branch as the development branch, to update
+other branch, you need to use the following command:
+
+``` bash
+For example, to update the "Latest" branch:
+
+git checkout Latest
+git branch -a(To make sure you are in the Latest branch)
+git pull
 ```
 
 <!-- Usage: library(rmarkdown);rmarkdown::render("README.Rmd", output_format="all") -->
