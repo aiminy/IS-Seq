@@ -1,0 +1,5 @@
+LAM-PCR-ID,PT-DONOR-MOUSE,PT-Transduction-ID,Source,Sample-Type,Research-(-R-)-Clinic-(-C-),TimePoint-R(d)-C(d),Fusion-Primer-LTR--ID,Fusion-Primer-LC--ID,Library,Sequencing-date-(mm-dd-yy),Organism,VectorType,VectorMask,Linker-Cassette,Vector,Other-Infos,Other-infos-2
+INSPIIRED.1,NA,clone1,INSPIIRED,clone1-1,R,1,FB-P5-Rd1-LTR.1,FB-P7-Rd2-LC.1,POOL-ISA-AVRO-19-Clin,10/27/21,hg18,SIN-LV,Empty-bed,LCbrcd,p746vector,NA,NA
+INSPIIRED.2,NA,clone1,INSPIIRED,clone1-2,R,1,FB-P5-Rd1-LTR.2,FB-P7-Rd2-LC.2,POOL-ISA-AVRO-19-Clin,10/27/21,hg18,SIN-LV,Empty-bed,LCbrcd,p746vector,NA,NA
+INSPIIRED.3,NA,clone1,INSPIIRED,clone1-3,R,1,FB-P5-Rd1-LTR.3,FB-P7-Rd2-LC.3,POOL-ISA-AVRO-19-Clin,10/27/21,hg18,SIN-LV,Empty-bed,LCbrcd,p746vector,NA,NA
+INSPIIRED.4,NA,clone1,INSPIIRED,clone1-4,R,1,FB-P5-Rd1-LTR.4,FB-P7-Rd2-LC.4,POOL-ISA-AVRO-19-Clin,10/27/21,hg18,SIN-LV,Empty-bed,LCbrcd,p746vector,NA,NA
