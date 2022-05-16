@@ -323,35 +323,11 @@ nohup python -u $HOME/IS-Seq/IS-SeqlineFv3_test.py -1 $HOME/SHARE/D32_Platform_D
 Rscript $HOME/user/IS-Seq/utils/getReadsFromSam.R -n 'pCDY.EFS.GlucoCco' -v /home/user/Seagate/ISseqOutput/Oct25/vector/align -a /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_2_GlucoCco_hg38.csv -o /home/user/Seagate/ISseqOutput/Oct25/total_vector_host_sam.rds
 ```
 
-You can find the ouput results in the following
-    folders:
-
-    /home/user/IS-Seq/ISseqOutput/Mar06/CutAdapt/filterNo/db/Mar06/FinalOut_Mar06/
-    
-    /home/user/IS-Seq/ISseqOutput/Mar06/CutAdapt/filter60/db/Mar06/FinalOut_Mar06/
-
 ### To get UmiBased results, you need to run the following command:
 
 ``` bash
 nohup python -u $HOME/IS-Seq/IS-SeqlineFv3_test.py -1 $HOME/SHARE/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_194642476/Undetermined_S0_L001_R1_001.fastq.gz -2 $HOME/SHARE/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_194642476/Undetermined_S0_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o $HOME/ISseqOutput -t AVROTEST1 -r $HOME/SHARE/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add_hg38.csv -u $HOME/SHARE/D32_Platform_Development/test/ISAtest/MiSeqTest/utilsRefData -p $HOME/IS-Seq/utils -a umi -c nothing > logAVROTEST1_umi.txt 2>&1 &
 ```
-
-You can find UMI based outputs in the following
-    resutls:
-
-    /home/user/IS-Seq/ISseqOutput/Mar06/UmiBased/collision/Lenti_Human/filterNo/db/Mar06/FinalOut_Mar06
-    /home/user/IS-Seq/ISseqOutput/Mar06/UmiBased/collision/Lenti_Human/filter60/db/Mar06/FinalOut_Mar06
-
-You can also check the number of reads that have same UMI in the
-following folder:
-
-    /home/user/IS-Seq/ISseqOutput/Mar06/UmiBased/UmiCluster/UmiBarPlots
-
-e.g. this following figure shows the distribution of reads in top 100
-UMIs before alignment ![umi](doc/allFiles_UMI.png) We also include the
-following Figure to demonstarte the distribution of reads in top 100
-UMIs after paired-end alignment:
-![umiAfterAlignment](doc/all_files_UMI_after_alignment.png)
 
 ### To get FragmentBased results, you need to run the following command:
 
