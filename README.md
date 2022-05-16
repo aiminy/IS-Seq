@@ -388,6 +388,38 @@ and change vector name for the folowing run:
 Rscript $HOME/user/IS-Seq/utils/getReadsFromSam.R -n 'pCDY-EFS-hGLAco_LTRtoLTR' -v /home/user/Seagate/ISseqOutput/Dec18/vector/align -a /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/20201219_AssociationFIle_CLINICAL_ALL_user.csv -b 'POOL-ISA-AVRO-4' -o /home/user/Seagate/ISseqOutput/Dec18/total_vector_host_sam.rds
 ```
 
+## A concise version of INSPIIRED
+
+This code is implemented based on the idea of INSPIIRED. we re-used some
+codes from INSPIIRED. This concise version makes our analysis be more
+flexible.
+
+## Inputs
+
+The following inputs are needed
+
+    Undetermined_S0_L001_I1_001.fastq.gz
+    Undetermined_S0_L001_R1_001.fastq.gz
+    Undetermined_S0_L001_R2_001.fastq.gz
+
+## demultiplex
+
+``` bash
+Rscript /home/ubuntu/intsitecaller/demultiplex.R /home/ubuntu/intsitecaller/testCases/intSiteValidation/Data/Undetermined_S0_L001_I1_001.fastq.gz /home/ubuntu/intsitecaller/testCases/intSiteValidation/completeMetadata.RData /home/ubuntu/intsitecaller/testCases/intSiteValidation/Data/Undetermined_S0_L001_R1_001.fastq.gz /home/ubuntu/intsitecaller/testCases/intSiteValidation/Data/Undetermined_S0_L001_R2_001.fastq.gz /home/ubuntu/SHARE/Aimin/INSPIIRED_test
+```
+
+## Trim\_After\_Demultiplex
+
+``` bash
+Rscript /home/ubuntu/intsitecaller/Trim_After_Demultiplex.R /home/ubuntu/intsitecaller/testCases/intSiteValidation/completeMetadata.RData /home/ubuntu/intsitecaller/MyTest/demultiplexedReps/clone1-1_R1.fastq.gz /home/ubuntu/intsitecaller/MyTest/demultiplexedReps/clone1-1_R2.fastq.gz /home/ubuntu/intsitecaller/testCases/intSiteValidation/p746vector.fasta /home/ubuntu/intsitecaller/testCases/intSiteValidation/hg18.2bit ~/SHARE/ISseqOutput/INSPIIRED_test_run
+```
+
+## call IS using blat-aligned R1 and R2 psl files
+
+``` bash
+Rscript /home/ubuntu/intsitecaller/PslToIs_one_replicate_change_sequence_similarity.R /home/ubuntu/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/R2_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P7-Rd2-LC.20.fq_trimwithCutAdapt_HL60cl60HL60Poly100_ReadyToAlignSort.fa.psl /home/ubuntu/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/R1_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P5-Rd1-LTR.16.fq_trimwithCutAdapt_HL60cl60HL60Poly100_ReadyToAlignSort.fa.psl /home/ubuntu/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/keys.rds ~/intsitecaller/testCases/intSiteValidation/completeMetadata.RData /home/ubuntu/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/rev0 hg38 1 0
+```
+
 ## Update
 
 IS-Seq use the “Latest” branch as the development branch, to update
