@@ -349,17 +349,17 @@ Rscript $HOME/R/IS-Seq/Trim_After_Demultiplex.R $HOME/IS-Seq/testCases/intSiteVa
 Rscript $HOME/IS-Seq/R/PslToIs_one_replicate_change_sequence_similarity.R $HOME/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/R2_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P7-Rd2-LC.20.fq_trimwithCutAdapt_HL60cl60HL60Poly100_ReadyToAlignSort.fa.psl $HOME/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/R1_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P5-Rd1-LTR.16.fq_trimwithCutAdapt_HL60cl60HL60Poly100_ReadyToAlignSort.fa.psl $HOME/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/keys.rds ~/IS-Seq/testCases/intSiteValidation/completeMetadata.RData $HOME/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/rev0 hg38 1 0
 ```
 
-## Update
+<!-- ## Update -->
 
-IS-Seq use the "Latest" branch as the development branch, to update other branch, you need to use the following command:
-```{bash eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
-For example, to update the "Latest" branch:
+<!-- IS-Seq use the "Latest" branch as the development branch, to update other branch, you need to use the following command: -->
+<!-- ```{bash eval=FALSE, message=FALSE, warning=FALSE, results='hide'} -->
+<!-- For example, to update the "Latest" branch: -->
 
-git checkout Latest
-git branch -a(To make sure you are in the Latest branch)
-git pull
+<!-- git checkout Latest -->
+<!-- git branch -a(To make sure you are in the Latest branch) -->
+<!-- git pull -->
 
-```
+<!-- ``` -->
 
 <!-- Usage: library(rmarkdown);rmarkdown::render("README.Rmd", output_format="all") --> 
 <!-- render("README.Rmd", output_format = "word_document") -->
