@@ -318,7 +318,7 @@ Note: you need to follow these order to run IS-Seq:
 
 ``` bash
 
-nohup python -u /home/ubuntu/ispipe/ISpipelineFv3_test.py -1 /home/ubuntu/SHARE/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_194642476/Undetermined_S0_L001_R1_001.fastq.gz -2 /home/ubuntu/SHARE/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_194642476/Undetermined_S0_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o /home/ubuntu/ISseqOutput -t AVROTEST1 -r /home/ubuntu/SHARE/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add_hg38.csv -u /home/ubuntu/SHARE/D32_Platform_Development/test/ISAtest/MiSeqTest/utilsRefData -p /home/ubuntu/ispipe/utils -a read -c nothing > logAVROTEST1.txt 2>&1 &
+nohup python -u $HOME/IS-Seq/IS-SeqlineFv3_test.py -1 $HOME/SHARE/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_194642476/Undetermined_S0_L001_R1_001.fastq.gz -2 $HOME/SHARE/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_194642476/Undetermined_S0_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o $HOME/ISseqOutput -t AVROTEST1 -r $HOME/SHARE/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add_hg38.csv -u $HOME/SHARE/D32_Platform_Development/test/ISAtest/MiSeqTest/utilsRefData -p $HOME/IS-Seq/utils -a read -c nothing > logAVROTEST1.txt 2>&1 &
 
 Rscript $HOME/user/IS-Seq/utils/getReadsFromSam.R -n 'pCDY.EFS.GlucoCco' -v /home/user/Seagate/ISseqOutput/Oct25/vector/align -a /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_2_GlucoCco_hg38.csv -o /home/user/Seagate/ISseqOutput/Oct25/total_vector_host_sam.rds
 ```
@@ -333,7 +333,7 @@ You can find the ouput results in the following
 ### To get UmiBased results, you need to run the following command:
 
 ``` bash
-nohup python -u /home/ubuntu/ispipe/ISpipelineFv3_test.py -1 /home/ubuntu/SHARE/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_194642476/Undetermined_S0_L001_R1_001.fastq.gz -2 /home/ubuntu/SHARE/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_194642476/Undetermined_S0_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o /home/ubuntu/ISseqOutput -t AVROTEST1 -r /home/ubuntu/SHARE/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add_hg38.csv -u /home/ubuntu/SHARE/D32_Platform_Development/test/ISAtest/MiSeqTest/utilsRefData -p /home/ubuntu/ispipe/utils -a umi -c nothing > logAVROTEST1_umi.txt 2>&1 &
+nohup python -u $HOME/IS-Seq/IS-SeqlineFv3_test.py -1 $HOME/SHARE/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_194642476/Undetermined_S0_L001_R1_001.fastq.gz -2 $HOME/SHARE/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_194642476/Undetermined_S0_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o $HOME/ISseqOutput -t AVROTEST1 -r $HOME/SHARE/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add_hg38.csv -u $HOME/SHARE/D32_Platform_Development/test/ISAtest/MiSeqTest/utilsRefData -p $HOME/IS-Seq/utils -a umi -c nothing > logAVROTEST1_umi.txt 2>&1 &
 ```
 
 You can find UMI based outputs in the following
@@ -356,7 +356,7 @@ UMIs after paired-end alignment:
 ### To get FragmentBased results, you need to run the following command:
 
 ``` bash
-nohup python -u /home/ubuntu/ispipe/ISpipelineFv3_test.py -1 /home/ubuntu/SHARE/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_194642476/Undetermined_S0_L001_R1_001.fastq.gz -2 /home/ubuntu/SHARE/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_194642476/Undetermined_S0_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o /home/ubuntu/ISseqOutput -t AVROTEST1 -r /home/ubuntu/SHARE/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add_hg38.csv -u /home/ubuntu/SHARE/D32_Platform_Development/test/ISAtest/MiSeqTest/utilsRefData -p /home/ubuntu/ispipe/utils -a fragment -c nothing > logAVROTEST1_fragment.txt 2>&1 &
+nohup python -u $HOME/IS-Seq/IS-SeqlineFv3_test.py -1 $HOME/SHARE/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_194642476/Undetermined_S0_L001_R1_001.fastq.gz -2 $HOME/SHARE/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_194642476/Undetermined_S0_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o $HOME/ISseqOutput -t AVROTEST1 -r $HOME/SHARE/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add_hg38.csv -u $HOME/SHARE/D32_Platform_Development/test/ISAtest/MiSeqTest/utilsRefData -p $HOME/IS-Seq/utils -a fragment -c nothing > logAVROTEST1_fragment.txt 2>&1 &
 ```
 
 Notes : For one sample of paired-end data with R1(2.4G) and R2(2.6G),
@@ -405,19 +405,19 @@ The following inputs are needed
 ## demultiplex
 
 ``` bash
-Rscript /home/ubuntu/intsitecaller/demultiplex.R /home/ubuntu/intsitecaller/testCases/intSiteValidation/Data/Undetermined_S0_L001_I1_001.fastq.gz /home/ubuntu/intsitecaller/testCases/intSiteValidation/completeMetadata.RData /home/ubuntu/intsitecaller/testCases/intSiteValidation/Data/Undetermined_S0_L001_R1_001.fastq.gz /home/ubuntu/intsitecaller/testCases/intSiteValidation/Data/Undetermined_S0_L001_R2_001.fastq.gz /home/ubuntu/SHARE/Aimin/INSPIIRED_test
+Rscript $HOME/IS-Seq/R/demultiplex.R $HOME/IS-Seq/testCases/intSiteValidation/Data/Undetermined_S0_L001_I1_001.fastq.gz $HOME/IS-Seq/testCases/intSiteValidation/completeMetadata.RData $HOME/IS-Seq/testCases/intSiteValidation/Data/Undetermined_S0_L001_R1_001.fastq.gz $HOME/IS-Seq/testCases/intSiteValidation/Data/Undetermined_S0_L001_R2_001.fastq.gz $HOME/SHARE/user/INSPIIRED_test
 ```
 
 ## Trim\_After\_Demultiplex
 
 ``` bash
-Rscript /home/ubuntu/intsitecaller/Trim_After_Demultiplex.R /home/ubuntu/intsitecaller/testCases/intSiteValidation/completeMetadata.RData /home/ubuntu/intsitecaller/MyTest/demultiplexedReps/clone1-1_R1.fastq.gz /home/ubuntu/intsitecaller/MyTest/demultiplexedReps/clone1-1_R2.fastq.gz /home/ubuntu/intsitecaller/testCases/intSiteValidation/p746vector.fasta /home/ubuntu/intsitecaller/testCases/intSiteValidation/hg18.2bit ~/SHARE/ISseqOutput/INSPIIRED_test_run
+Rscript $HOME/R/IS-Seq/Trim_After_Demultiplex.R $HOME/IS-Seq/testCases/intSiteValidation/completeMetadata.RData $HOME/IS-Seq/MyTest/demultiplexedReps/clone1-1_R1.fastq.gz $HOME/IS-Seq/MyTest/demultiplexedReps/clone1-1_R2.fastq.gz $HOME/IS-Seq/testCases/intSiteValidation/p746vector.fasta $HOME/IS-Seq/testCases/intSiteValidation/hg18.2bit ~/SHARE/ISseqOutput/INSPIIRED_test_run
 ```
 
 ## call IS using blat-aligned R1 and R2 psl files
 
 ``` bash
-Rscript /home/ubuntu/intsitecaller/PslToIs_one_replicate_change_sequence_similarity.R /home/ubuntu/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/R2_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P7-Rd2-LC.20.fq_trimwithCutAdapt_HL60cl60HL60Poly100_ReadyToAlignSort.fa.psl /home/ubuntu/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/R1_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P5-Rd1-LTR.16.fq_trimwithCutAdapt_HL60cl60HL60Poly100_ReadyToAlignSort.fa.psl /home/ubuntu/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/keys.rds ~/intsitecaller/testCases/intSiteValidation/completeMetadata.RData /home/ubuntu/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/rev0 hg38 1 0
+Rscript $HOME/IS-Seq/R/PslToIs_one_replicate_change_sequence_similarity.R $HOME/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/R2_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P7-Rd2-LC.20.fq_trimwithCutAdapt_HL60cl60HL60Poly100_ReadyToAlignSort.fa.psl $HOME/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/R1_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P5-Rd1-LTR.16.fq_trimwithCutAdapt_HL60cl60HL60Poly100_ReadyToAlignSort.fa.psl $HOME/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/keys.rds ~/IS-Seq/testCases/intSiteValidation/completeMetadata.RData $HOME/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/rev0 hg38 1 0
 ```
 
 ## Update
