@@ -32,11 +32,11 @@ following command:
   - Other required software and managing python 2.7.17 and python3
     environment
 
-IS-Seq requiress to have the following software to be installed under
+IS-Seq requires to have the following software to be installed under
 Python 2.7.17 environment. User also needs to create an python3.7
 environment, and install umi\_tools under python3.7. IS-Seq will
 activate python3.7 to use umi\_tools for UMI extracting automatically
-during running, User don’t need to activate python3.7 manually
+during running, User don’t need to activate python3.7 manually.
 
 ``` bash
 The list of tools and how to install it 
@@ -101,7 +101,6 @@ sudo apt-get install libgtk2.0-dev xvfb xauth xfonts-base libxt-dev
 if you want to run this Pipeline on AWS, you also need to do:
 conda install Biopython
 
-
 pip install more_itertools
 sudo apt-get install libtbb2
 conda install -c kantorlab blastn
@@ -132,10 +131,10 @@ BiocManager::install("GenomicRanges")
 
 ``` bash
 # To have a quick look at how to generate
-Rscript R/makeREFIndex.R -h
+Rscript path/to/IS-Seq/R/makeREFIndex.R -h
 
 # For example: hg38
-Rscript $HOME/user/IS-Seq/R/makeREFIndex.R -i ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_34/GRCh38.primary_assembly.genome.fa.gz -g ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_34/gencode.v34.annotation.gtf.gz -o /home/user/IS-Seq/utilsRefData/hg38/GRCh38.primary_assembly.genome.fa
+Rscript path/to/IS-Seq/R/makeREFIndex.R -i ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_34/GRCh38.primary_assembly.genome.fa.gz -g ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_34/gencode.v34.annotation.gtf.gz -o path/to/utilsRefData/hg38/GRCh38.primary_assembly.genome.fa
 ```
 
 ### To get sequencing data from basespace, you can run the following command:
