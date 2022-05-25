@@ -137,52 +137,17 @@ Rscript path/to/IS-Seq/R/makeREFIndex.R -h
 Rscript path/to/IS-Seq/R/makeREFIndex.R -i ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_34/GRCh38.primary_assembly.genome.fa.gz -g ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_34/gencode.v34.annotation.gtf.gz -o path/to/utilsRefData/hg38/GRCh38.primary_assembly.genome.fa
 ```
 
-### To get sequencing data from basespace, you can run the following command:
+### The data set we used for test IS-Seq:
 
-``` bash
+  - One public available data set, and can be downloaded from the
+    folllowing
+    website
+    
+    <https://github.com/BushmanLab/intSiteCaller/tree/master/testCases/intSiteValidation/Data>
 
-# if using basemount
-
-conda deactivate
-sudo apt install curl
-sudo bash -c "$(curl -L https://basemount.basespace.illumina.com/install/)"
-mkdir /media/BaseSpace
-
-## mount 
-basemount /media/BaseSpace
-## unmount
-basemount --unmount /media/BaseSpace
-
-# unmount aws_share
-sudo umount /media/aws_share
-
-# mount again
-sudo mount -a
-
-## list run information firstly
-
-bs run list
-
-# if using bs download 
-Download bs from https://developer.basespace.illumina.com/docs/content/documentation/cli/cli-overview firstly
- 
-bs download run -i 194449296 -o /Volumes/AvroLabData/BIASCO_Archive_Test_Folder/user_Temp_files/Basespace_runs/194449296
-
-bs download run -i 194642476 -o /media/nas/BIASCO_Archive_Test_Folder/user_Temp_files/Basespace_runs/194642476 > logDownload.txt 2>&1 &
-
-bs download run -i 194449296 -o /media/nas/BIASCO_Archive_Test_Folder/user_Temp_files/Basespace_runs/194449296 > logDownload_194449296.txt 2>&1 &
-
-
-/media/nas/BIASCO_Archive_Test_Folder/user_Temp_files/Basespace_runs/194449296/Data/Intensities/BaseCalls:
-
-#194642476
-
-#195003845
-
-#195844671
-
-bs download run -i 195844671 -o /media/aws_share/D32_Platform_Development/1_Raw_Data/Basespace_Illumina_runs/MiSeq/Basespace_run_195844671
-```
+  - 3 in-house generated data sets, and can be downloaded from GEO
+    
+    <https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE203211>
 
 ### Convert BCL files to fastq.gz files using bcl2fastq
 
