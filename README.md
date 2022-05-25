@@ -137,7 +137,7 @@ Rscript path/to/IS-Seq/R/makeREFIndex.R -h
 Rscript path/to/IS-Seq/R/makeREFIndex.R -i ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_34/GRCh38.primary_assembly.genome.fa.gz -g ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_34/gencode.v34.annotation.gtf.gz -o path/to/utilsRefData/hg38/GRCh38.primary_assembly.genome.fa
 ```
 
-### The data set we used for test IS-Seq:
+### The data set we used for testing IS-Seq:
 
   - One public available data set, and can be downloaded from the
     folllowing
@@ -150,10 +150,9 @@ Rscript path/to/IS-Seq/R/makeREFIndex.R -i ftp://ftp.ebi.ac.uk/pub/databases/gen
     <https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE203211>
     
     Note: These data sets will be available after our IS-Seq paper is
-    accepted for publication. Before this, if you want
-    
-    to review these data, please send email to
-    <aimin.at.work@gmail.com>, we will let you know how to access them.
+    accepted for publication. Before this, if you want to review these
+    data, please send an email to <aimin.at.work@gmail.com>, we will let
+    you know how to access them.
 
 ### Convert BCL files to fastq.gz files using bcl2fastq
 
