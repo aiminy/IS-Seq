@@ -143,27 +143,31 @@ Rscript path/to/IS-Seq/R/makeREFIndex.R -i ftp://ftp.ebi.ac.uk/pub/databases/gen
   https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE203211
 
   Note: These data sets will be available after our IS-Seq paper is accepted for publication. Before this, if you want 
-  to review these data, please send an email to aimin.at.work@gmail.com, we will let you know how to access them. 
+  to review these data sets, please send an email to aimin.at.work@gmail.com, we will let you know how to access them. 
   
-### Convert BCL files to fastq.gz files using bcl2fastq
+### if you have BCL files from sequencing run, convert BCL files to fastq.gz files using bcl2fastq
 
 ```
 
 # Example:
 
-# 'ISA POOL AVRO 2'
+# serial dilutions data set 1
 
-nohup bcl2fastq --runfolder-dir /media/BaseSpace/Runs/'ISA POOL AVRO 2'/Files --output-dir /media/aws_share/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_198158076 > logOct25ToFq.txt 2>&1 &
+nohup bcl2fastq --runfolder-dir path/to/BCL files/Files --output-dir path/to/output_Fastq_files > log.txt 2>&1 &
 
 ```
 
 ### To have a quick start to using IS-Seq, you can run the following command:
 ```{bash eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
-python /home/user/IS-Seq/IS-SeqlineFv3_test.py
+python path/to/IS-Seq/ISpipelineFv3_test.py
 
-Usage: python /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 <r1.fq.gz> -2 <r2.fq.gz> -s <sampleName> -o <outputFolder> -t <suffix> -r <researchFile> -u <referenceDataDir> -p <utilsProgramDir> -a <analysisType>
-Example:
-python /home/user/IS-Seq/IS-SeqlineFv3_test.py -1 /home/user/IS-Seq/data/PL0431_S1_L001_R1_001.fastq.gz -2 /home/user/IS-Seq/data/PL0431_S1_L001_R2_001.fastq.gz -s POOL-UCL-CPL-Re -o /home/user/UploadToEgnyte/user/ISseqOutput -t Mar04 -r /home/user/IS-Seq/sample_research/Association_pool_CPL_Nov19Fix.csv -u /home/user/IS-Seq/utilsRefData -p /home/user/IS-Seq/utils -a read
+Usage: python path/to/IS-Seq/ISpipelineFv3_test.py -1 <r1.fq.gz> -2 <r2.fq.gz> -s <sampleName> -o <outputFolder> -t <suffix> -r <researchFile> -u <referenceDataDir> -p <utilsProgramDir> -a <analysisType>
+
+# Example:
+
+# serial dilutions data set 1
+
+python path/to/IS-Seq/ISpipelineFv3_test.py -1 path/to/Undetermined_S0_L001_R1_001.fastq.gz -2 path/to/Undetermined_S0_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o path/to/Output -t April20 -r path/to/assiciation_file/Association_pool_ISA_AVRO_TEST1_add_hg38.csv -u path/to/IS-Seq/utilsRefData -p path/to/IS-Seq/utils -a read
 
 ```
 
@@ -238,22 +242,24 @@ Note: you need to follow these order to run IS-Seq:
 
 ```{bash eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
 
-nohup python -u $HOME/IS-Seq/IS-SeqlineFv3_test.py -1 $HOME/SHARE/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_194642476/Undetermined_S0_L001_R1_001.fastq.gz -2 $HOME/SHARE/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_194642476/Undetermined_S0_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o $HOME/ISseqOutput -t AVROTEST1 -r $HOME/SHARE/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add_hg38.csv -u $HOME/SHARE/D32_Platform_Development/test/ISAtest/MiSeqTest/utilsRefData -p $HOME/IS-Seq/utils -a read -c nothing > logAVROTEST1.txt 2>&1 &
+nohup python -u path/to/IS-Seq/ISpipelineFv3_test.py -1 path/to/Undetermined_S0_L001_R1_001.fastq.gz -2 path/to/Undetermined_S0_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o path/to/Output -t April20 -r path/to/association_file/Association_pool_ISA_AVRO_TEST1_add_hg38.csv -u path/to/IS-Seq/utilsRefData -p path/to/IS-Seq/utils -a read -c nothing > logRead.txt 2>&1 &
 
-Rscript $HOME/user/IS-Seq/utils/getReadsFromSam.R -n 'pCDY.EFS.GlucoCco' -v /home/user/Seagate/ISseqOutput/Oct25/vector/align -a /media/aws_share/D32_Platform_Development/test/ISAtest/MiSeqTest/3_AssociationFIle_POOL_ISA_AVRO_2_GlucoCco_hg38.csv -o /home/user/Seagate/ISseqOutput/Oct25/total_vector_host_sam.rds
+Rscript path/to/IS-Seq/utils/getReadsFromSam.R -n 'MND-GFP' -v path/to/Output/April20/vector/align -a path/to/assiciation_file/Association_pool_ISA_AVRO_TEST1_add_hg38.csv -o path/to/Output/April20/total_vector_host_sam.rds
 
 ```
 
 
 ### To get UmiBased results, you need to run the following command:
 ```{bash eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
-nohup python -u $HOME/IS-Seq/IS-SeqlineFv3_test.py -1 $HOME/SHARE/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_194642476/Undetermined_S0_L001_R1_001.fastq.gz -2 $HOME/SHARE/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_194642476/Undetermined_S0_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o $HOME/ISseqOutput -t AVROTEST1 -r $HOME/SHARE/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add_hg38.csv -u $HOME/SHARE/D32_Platform_Development/test/ISAtest/MiSeqTest/utilsRefData -p $HOME/IS-Seq/utils -a umi -c nothing > logAVROTEST1_umi.txt 2>&1 &
+
+nohup python -u path/to/IS-Seq/ISpipelineFv3_test.py -1 path/to/Undetermined_S0_L001_R1_001.fastq.gz -2 path/to/Undetermined_S0_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o path/to/Output -t April20 -r path/to/association_file/Association_pool_ISA_AVRO_TEST1_add_hg38.csv -u path/to/IS-Seq/utilsRefData -p path/to/IS-Seq/utils -a umi -c nothing > logUmi.txt 2>&1 &
 
 ```
 
 ### To get FragmentBased results, you need to run the following command:
 ```{bash eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
-nohup python -u $HOME/IS-Seq/IS-SeqlineFv3_test.py -1 $HOME/SHARE/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_194642476/Undetermined_S0_L001_R1_001.fastq.gz -2 $HOME/SHARE/D32_Platform_Development/test/02_Analyses/Sequencing_data_processing/MiSeq/Fastq_Illumina_runs/Basespace_run_194642476/Undetermined_S0_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o $HOME/ISseqOutput -t AVROTEST1 -r $HOME/SHARE/D32_Platform_Development/test/ISAtest/MiSeqTest/Association_pool_ISA_AVRO_TEST1_add_hg38.csv -u $HOME/SHARE/D32_Platform_Development/test/ISAtest/MiSeqTest/utilsRefData -p $HOME/IS-Seq/utils -a fragment -c nothing > logAVROTEST1_fragment.txt 2>&1 &
+
+nohup python -u path/to/IS-Seq/ISpipelineFv3_test.py -1 path/to/Undetermined_S0_L001_R1_001.fastq.gz -2 path/to/Undetermined_S0_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o path/to/Output -t April20 -r path/to/association_file/Association_pool_ISA_AVRO_TEST1_add_hg38.csv -u path/to/IS-Seq/utilsRefData -p path/to/IS-Seq/utils -a fragment -c nothing > logFragment.txt 2>&1 &
 
 ```
 
