@@ -279,11 +279,11 @@ Rscript path/to/ConvertINSPIIREDDataToISseq.R path/to/Undetermined_S0_L001_I1_00
 
 # Run read based firstly
 
-nohup python -u path/to/IS-Seq/IsSeqToINSPIIRED.py -1 path/to/Output/R1.fq.gz -2 path/to/Output/R2.fq.gz -s POOL-ISA-AVRO-19-Clin -o path/to/ISseqOutput -t clone1 -r path/to/clone1association.csv -u path/to/INSPIIREDData/utilsRefData -p path/to/IS-Seq/utils -a read -c nothing -q 30 > clone1_logRead.txt 2>&1 &
+nohup python -u path/to/IS-Seq/IsSeqToINSPIIRED.py -1 path/to/Output/R1.fq.gz -2 path/to/Output/R2.fq.gz -s POOL-ISA-AVRO-19-Clin -o path/to/ISseqOutput -t clone1 -r path/to/clone1association_example_use_IsSeq_on_INSP.csv -u path/to/IS-Seq/utilsRefData/INSPIIRED -p path/to/IS-Seq/utils -a read -c nothing -q 30 > clone1_logRead.txt 2>&1 &
 
 # After finishing read based, you can run fragment based
 
-nohup python -u path/to/IS-Seq/IsSeqToINSPIIRED.py -1 path/to/Output/R1.fq.gz -2 path/to/Output/R2.fq.gz -s POOL-ISA-AVRO-19-Clin -o path/to/ISseqOutput -t clone1 -r path/to/clone1association.csv -u path/to/INSPIIREDData/utilsRefData -p path/to/IS-Seq/utils -a fragment -c nothing -q 30 > clone1_logfragment.txt 2>&1 &
+nohup python -u path/to/IS-Seq/IsSeqToINSPIIRED.py -1 path/to/Output/R1.fq.gz -2 path/to/Output/R2.fq.gz -s POOL-ISA-AVRO-19-Clin -o path/to/ISseqOutput -t clone1 -r path/to/clone1association_example_use_IsSeq_on_INSP.csv -u path/to/IS-Seq/utilsRefData/INSPIIRED -p path/to/IS-Seq/utils -a fragment -c nothing -q 30 > clone1_logfragment.txt 2>&1 &
 
 ```
 
