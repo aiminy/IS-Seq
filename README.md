@@ -294,7 +294,7 @@ Note: you need to follow these order to run IS-Seq:
 
 nohup python -u path/to/IS-Seq/ISpipelineFv3_test.py -1 path/to/Undetermined_S0_L001_R1_001.fastq.gz -2 path/to/Undetermined_S0_L001_R2_001.fastq.gz -s POOL-ISA-AVRO-TEST1 -o path/to/Output -t April20 -r path/to/association_file/Association_pool_ISA_AVRO_TEST1_add_hg38.csv -u path/to/IS-Seq/utilsRefData -p path/to/IS-Seq/utils -a read -c nothing > logRead.txt 2>&1 &
 
-Rscript path/to/IS-Seq/utils/getReadsFromSam.R -n 'MND-GFP' -v path/to/Output/April20/vector/align -a path/to/assiciation_file/Association_pool_ISA_AVRO_TEST1_add_hg38.csv -o path/to/Output/April20/total_vector_host_sam.rds
+Rscript path/to/IS-Seq/utils/getReadsFromSam.R -n 'pCDY.MND.GFP' -v path/to/Output/April20/vector/align -a path/to/assiciation_file/Association_pool_ISA_AVRO_TEST1_add_hg38.csv -o path/to/Output/April20/total_vector_host_sam.rds
 ```
 
 ### To get UmiBased results, you need to run the following command:
@@ -316,7 +316,25 @@ you need to have 145G work space for read, umi and fragment based
 resutls totally.
 
 The following Figure shows the differences on some insert sites among 3
-methods ![results](doc/resultsOf3methods.png)
+methods
+![results](doc/resultsOf3methods.png)
+
+### To use IS-Seq on the data set from INSPIIRED pipeline, you need to run the following command:
+
+``` bash
+
+# Convert the data set in INSPIIRED pipeline to the format that can be used in IS-Seq firstly
+
+Rscript path/to/ConvertINSPIIREDDataToISseq.R path/to/Undetermined_S0_L001_I1_001.fastq.gz path/to/Undetermined_S0_L001_R1_001.fastq.gz path/to/Undetermined_S0_L001_R2_001.fastq.gz path/to/Output R2.fq R1.fq path/to/python_used/site-packages
+
+# Run read based firstly
+
+nohup python -u path/to/IS-Seq/IsSeqToINSPIIRED.py -1 path/to/Output/R1.fq.gz -2 path/to/Output/R2.fq.gz -s POOL-ISA-AVRO-19-Clin -o path/to/ISseqOutput -t clone1 -r path/to/clone1association.csv -u path/to/INSPIIREDData/utilsRefData -p path/to/IS-Seq/utils -a read -c nothing -q 30 > clone1_logRead.txt 2>&1 &
+
+# After finishing read based, you can run fragment based
+
+nohup python -u path/to/IS-Seq/IsSeqToINSPIIRED.py -1 path/to/Output/R1.fq.gz -2 path/to/Output/R2.fq.gz -s POOL-ISA-AVRO-19-Clin -o path/to/ISseqOutput -t clone1 -r path/to/clone1association.csv -u path/to/INSPIIREDData/utilsRefData -p path/to/IS-Seq/utils -a fragment -c nothing -q 30 > clone1_logfragment.txt 2>&1 &
+```
 
 ## A concise version of INSPIIRED
 
