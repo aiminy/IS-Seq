@@ -336,13 +336,14 @@ nohup python -u path/to/IS-Seq/IsSeqToINSPIIRED.py -1 path/to/Output/R1.fq.gz -2
 nohup python -u path/to/IS-Seq/IsSeqToINSPIIRED.py -1 path/to/Output/R1.fq.gz -2 path/to/Output/R2.fq.gz -s POOL-ISA-AVRO-19-Clin -o path/to/ISseqOutput -t clone1 -r path/to/clone1association_example_use_IsSeq_on_INSP.csv -u path/to/IS-Seq/utilsRefData/INSPIIRED -p path/to/IS-Seq/utils -a fragment -c nothing -q 30 > clone1_logfragment.txt 2>&1 &
 ```
 
-## A concise version of INSPIIRED
+### Use INSPIIRED pipeline to get IS:
 
-This code is implemented based on the idea of INSPIIRED. we re-used some
-codes from INSPIIRED. This concise version makes our analysis be more
-flexible.
+In order to use INSPIIRED pipleine on our in-house generated data sets,
+we implemented a concise version of of INSPIIRED pipeline by re-using
+some codes in INSPIIRED pipeline. We used this concise version on both
+our in-house generated data sets and INSPIIRED data set.
 
-## Inputs
+#### For the INSPIIRED data set
 
 The following inputs are needed
 
@@ -350,19 +351,19 @@ The following inputs are needed
     Undetermined_S0_L001_R1_001.fastq.gz
     Undetermined_S0_L001_R2_001.fastq.gz
 
-## demultiplex
+##### demultiplex
 
 ``` bash
 Rscript path/to/IS-Seq/R/demultiplex.R path/to/IS-Seq/testCases/intSiteValidation/Data/Undetermined_S0_L001_I1_001.fastq.gz path/to/IS-Seq/testCases/intSiteValidation/completeMetadata.RData path/to/IS-Seq/testCases/intSiteValidation/Data/Undetermined_S0_L001_R1_001.fastq.gz path/to/IS-Seq/testCases/intSiteValidation/Data/Undetermined_S0_L001_R2_001.fastq.gz path/to/INSPIIRED_test_output
 ```
 
-## Trim\_After\_Demultiplex
+##### Trim\_After\_Demultiplex
 
 ``` bash
 Rscript path/to/IS-Seq/R/Trim_After_Demultiplex.R path/to/IS-Seq/testCases/intSiteValidation/completeMetadata.RData path/to/IS-Seq/MyTest/demultiplexedReps/clone1-1_R1.fastq.gz path/to/IS-Seq/MyTest/demultiplexedReps/clone1-1_R2.fastq.gz path/to/IS-Seq/testCases/intSiteValidation/p746vector.fasta path/to/IS-Seq/testCases/intSiteValidation/hg18.2bit paht/to/ISseqOutput/INSPIIRED_test_run
 ```
 
-## call IS using blat-aligned R1 and R2 psl files
+##### call IS using blat-aligned R1 and R2 psl files
 
 ``` bash
 Rscript path/to/IS-Seq/R/PslToIs_one_replicate_change_sequence_similarity.R path/to/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/R2_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P7-Rd2-LC.20.fq_trimwithCutAdapt_HL60cl60HL60Poly100_ReadyToAlignSort.fa.psl path/to/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/R1_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P5-Rd1-LTR.16.fq_trimwithCutAdapt_HL60cl60HL60Poly100_ReadyToAlignSort.fa.psl path/to/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/keys.rds path/to/IS-Seq/testCases/intSiteValidation/completeMetadata.RData path/to/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/rev0 hg38 1 0
