@@ -293,13 +293,10 @@ In order to use INSPIIRED pipleine on our in-house generated data sets, we imple
 
 #### For the INSPIIRED data set
 
-The following inputs are needed
+The input FASTQ files needs to be downloaded from the folllowing website
 
-```
-Undetermined_S0_L001_I1_001.fastq.gz
-Undetermined_S0_L001_R1_001.fastq.gz
-Undetermined_S0_L001_R2_001.fastq.gz
-``` 
+https://github.com/BushmanLab/intSiteCaller/tree/master/testCases/intSiteValidation/Data
+
 
 ##### demultiplex
 ```bash
@@ -308,12 +305,12 @@ Rscript path/to/IS-Seq/R/demultiplex.R path/to/IS-Seq/testCases/intSiteValidatio
 
 ##### Trim_After_Demultiplex
 ```bash
-Rscript path/to/IS-Seq/R/Trim_After_Demultiplex.R path/to/IS-Seq/testCases/intSiteValidation/completeMetadata.RData path/to/IS-Seq/MyTest/demultiplexedReps/clone1-1_R1.fastq.gz path/to/IS-Seq/MyTest/demultiplexedReps/clone1-1_R2.fastq.gz path/to/IS-Seq/testCases/intSiteValidation/p746vector.fasta path/to/IS-Seq/testCases/intSiteValidation/hg18.2bit paht/to/ISseqOutput/INSPIIRED_test_run
+Rscript path/to/IS-Seq/R/Trim_After_Demultiplex.R path/to/IS-Seq/testCases/intSiteValidation/completeMetadata.RData path/to/IS-Seq/MyTest/demultiplexedReps/clone1-1_R1.fastq.gz path/to/IS-Seq/MyTest/demultiplexedReps/clone1-1_R2.fastq.gz path/to/IS-Seq/testCases/intSiteValidation/p746vector.fasta path/to/IS-Seq/testCases/intSiteValidation/hg18.2bit path/to/ISseqOutput/INSPIIRED_test_run
 ```
 
 ##### call IS using blat-aligned R1 and R2 psl files
 ```bash
-Rscript path/to/IS-Seq/R/PslToIs_one_replicate_change_sequence_similarity.R path/to/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/R2_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P7-Rd2-LC.20.fq_trimwithCutAdapt_HL60cl60HL60Poly100_ReadyToAlignSort.fa.psl path/to/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/R1_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P5-Rd1-LTR.16.fq_trimwithCutAdapt_HL60cl60HL60Poly100_ReadyToAlignSort.fa.psl path/to/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/keys.rds path/to/IS-Seq/testCases/intSiteValidation/completeMetadata.RData path/to/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/rev0 hg38 1 0
+Rscript path/to/IS-Seq/R/PslToIs_one_replicate_change_sequence_similarity.R path/to/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/R2_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P7-Rd2-LC.20.fq_trimwithCutAdapt_HL60cl60HL60Poly100_ReadyToAlignSort.fa.psl path/to/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/R1_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P5-Rd1-LTR.16.fq_trimwithCutAdapt_HL60cl60HL60Poly100_ReadyToAlignSort.fa.psl path/to/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/keys.rds path/to/IS-Seq/testCases/intSiteValidation/completeMetadata.RData path/to/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/rev0 hg18 1 0
 ```
 
 
