@@ -196,8 +196,8 @@ python path/to/IS-Seq/ISpipelineFv3_test.py -1 path/to/Undetermined_S0_L001_R1_0
       - \-t time you run this pipeline
     
       - \-r association file. User should prepare an assocation file
-        based on the formats in “association\_pool\_CPL\_Nov19Fix.csv”
-        in “sample\_research” folder. you can check the detailed format
+        based on the formats in “Association\_File\_format.png” in
+        “sample\_research” folder. you can check the detailed format
         information here
         ![SampleInfor](sample_research/Association_File_format.png). The
         following is the detailed information of each column in this
@@ -339,9 +339,9 @@ nohup python -u path/to/IS-Seq/IsSeqToINSPIIRED.py -1 path/to/Output/R1.fq.gz -2
 ### Use INSPIIRED pipeline to get IS:
 
 In order to use INSPIIRED pipleine on our in-house generated data sets,
-we implemented a concise version of of INSPIIRED pipeline by re-using
-some codes in INSPIIRED pipeline. We used this concise version on both
-our in-house generated data sets and INSPIIRED data set.
+we implemented a concise version of INSPIIRED pipeline by re-using some
+codes in INSPIIRED pipeline. We used this concise version on both our
+in-house generated data sets and INSPIIRED data set.
 
 #### For the INSPIIRED data set
 
