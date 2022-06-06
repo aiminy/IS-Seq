@@ -1,39 +1,47 @@
-# Inputs:
-# /home/ubuntu/intsitecaller/testCases/intSiteValidation/Data/Undetermined_S0_L001_I1_001.fastq.gz
+# Example:
 
-# /home/ubuntu/intsitecaller/testCases/intSiteValidation/completeMetadata.RData
+# check which python is used
 
-# /home/ubuntu/intsitecaller/testCases/intSiteValidation/Data/Undetermined_S0_L001_R1_001.fastq.gz
+# echo $(python -c "import site; print(site.getsitepackages()[0])")/home/ubuntu/miniconda2/lib/python2.7/site-packages
 
-# /home/ubuntu/intsitecaller/testCases/intSiteValidation/Data/Undetermined_S0_L001_R2_001.fastq.gz
+# PYTHONPATH='/home/ubuntu/miniconda2/lib/python2.7/site-packages'
 
-# Outputs:
+# Rscript path/to/IS-Seq/R/demultiplex.R path/to/IS-Seq/testCases/intSiteValidation/Data/Undetermined_S0_L001_I1_001.fastq.gz path/to/IS-Seq/testCases/intSiteValidation/completeMetadata.RData path/to/IS-Seq/testCases/intSiteValidation/Data/Undetermined_S0_L001_R1_001.fastq.gz path/to/IS-Seq/testCases/intSiteValidation/Data/Undetermined_S0_L001_R2_001.fastq.gz path/to/INSPIIRED_test_output /home/ubuntu/miniconda2/lib/python2.7/site-packages
 
-# trimmed and corrected index files
-# MyTest/correctedI1-1.fasta  
-# MyTest/trimmedI1-1.fasta
+initial.options <- commandArgs(trailingOnly = FALSE)
+print(initial.options)
 
-# demultiplexed reads
-# MyTest/demultiplexedReps/*fastq.gz
+file.arg.name <- "--file="
+script.name <- sub(file.arg.name, "", initial.options[grep(file.arg.name, initial.options)])
+script.dirname <- dirname(script.name)
+print(script.dirname)
 
 library("ShortRead")
-
-#  codeDir <- get(load("codeDir.RData"))
-#  completeMetadata <- get(load("completeMetadata.RData"))
-#  jobID <- get(load("jobID.RData"))
 
 args = commandArgs(trailingOnly=TRUE)
 
 if (length(args)==0) {
-	  stop("At least one argument must be supplied (input file).n", call.=FALSE)
+  stop("At least one argument must be supplied (input file).n", call.=FALSE)
 } else if (length(args)>=1) {
-	  # default output file
-      output.dir=args[1]
+  
+  # input
+  input.index=args[1]
+  input.Metadata=args[2]
+  
+  input.R1=args[3]
+  input.R2=args[4]
+  
+  # output
+  output.dir=args[5]
+  
+  # PYTHONPATH
+  PYTHONPATH=args[6]
+  
 }
 
   if(!dir.exists(output.dir)){dir.create(output.dir,recursive = TRUE)}
 
-  I1 <- readFastq("/home/ubuntu/intsitecaller/testCases/intSiteValidation/Data/Undetermined_S0_L001_I1_001.fastq.gz")
+  I1 <- readFastq(input.index)
 
   print(I1)
 
@@ -42,21 +50,23 @@ if (length(args)==0) {
   I1 <- I1[width(I1)==max(width(I1))]
   I1 <- split(I1, ceiling(seq_along(I1)/500000))
 
-
-
   for(chunk in names(I1)){
-
-      output_fasta=file.path(output.dir,paste0("trimmedI1-", chunk, ".fasta"))
-      writeFasta(I1[[chunk]], file=output_fasta)
-      cmd <- paste0('export PYTHONPATH=/home/ubuntu/miniconda2/lib/python2.7/site-packages;python processGolayTest.py ',output_fasta,' ',file.path(output.dir,'correctedI1-1.fasta'),' ',file.path(output.dir,'correctedI1-1.done'))
-      system(cmd)
-
+    
+    output_fasta=file.path(output.dir,paste0("trimmedI1-", chunk, ".fasta"))
+    writeFasta(I1[[chunk]], file=output_fasta)
+    
+    cmd <- paste0('export PYTHONPATH=',PYTHONPATH,';','python ',file.path(script.dirname,'processGolayTest.py '),output_fasta,' ',file.path(output.dir,'correctedI1-1.fasta'),' ',file.path(output.dir,'correctedI1-1.done'))
+    
+    print(cmd)
+    
+    system(cmd)
+    
   }
-  
- 
+
 demultiplex_reads <- function(reads, suffix, I1Names, samples, completeMetadata,output.dir) {
 
-RNames <- sapply(strsplit(as.character(ShortRead::id(reads)), " "), "[[", 1)#for some reason we can't dynamically set name/id on ShortRead!
+RNames <- sapply(strsplit(as.character(ShortRead::id(reads)), " "), "[[", 1)
+
 names(RNames) <- NULL
 
 reads <- reads[match(I1Names, RNames)]
@@ -97,7 +107,7 @@ writeLog <- function(...)
 
  I1 <- readFasta(list.files(output.dir, pattern="correctedI1-.", full.names=T))
   
- completeMetadata <- get(load("./testCases/intSiteValidation/completeMetadata.RData"))
+ completeMetadata <- get(load(input.Metadata))
   
  I1 <- I1[as.vector(sread(I1)) %in% completeMetadata$bcSeq]
  
@@ -110,7 +120,7 @@ writeLog <- function(...)
   suppressWarnings(dir.create(file.path(output.dir,"demultiplexedReps")))
 
   writeLog('Starting to demultiplex R1')
- R1 <- readFastq("./testCases/intSiteValidation/Data/Undetermined_S0_L001_R1_001.fastq.gz")
+ R1 <- readFastq(input.R1)
   
   demultiplex_reads(R1, "R1", I1Names, samples, completeMetadata,output.dir)
   
@@ -118,7 +128,7 @@ writeLog <- function(...)
   
   writeLog('Starting to demultiplex R2')
   
- R2 <- readFastq("./testCases/intSiteValidation/Data/Undetermined_S0_L001_R2_001.fastq.gz")
+ R2 <- readFastq(input.R2)
   
   demultiplex_reads(R2, "R2", I1Names, samples, completeMetadata,output.dir)
   
