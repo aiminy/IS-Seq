@@ -2,8 +2,11 @@
 
 # check which python is used
 
-# echo $(python -c "import site; print(site.getsitepackages()[0])")/home/ubuntu/miniconda2/lib/python2.7/site-packages
-
+# echo $(python -c "import site; print(site.getsitepackages()[0])")
+# for example: 
+# after issuing this command, you get:
+# /home/ubuntu/miniconda2/lib/python2.7/site-packages
+# Then PYTHONPATH will be
 # PYTHONPATH='/home/ubuntu/miniconda2/lib/python2.7/site-packages'
 
 # Rscript ~/IS-Seq/R/demultiplex.R ~/intsitecaller/testCases/intSiteValidation/Data/Undetermined_S0_L001_I1_001.fastq.gz ~/IS-Seq/utilsRefData/INSPIIRED/completeMetadata.RData ~/intsitecaller/testCases/intSiteValidation/Data/Undetermined_S0_L001_R1_001.fastq.gz ~/intsitecaller/testCases/intSiteValidation/Data/Undetermined_S0_L001_R2_001.fastq.gz ~/SHARE/Aimin/INSPIIRED_test_output /home/ubuntu/miniconda2/lib/python2.7/site-packages

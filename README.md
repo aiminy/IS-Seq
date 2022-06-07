@@ -325,7 +325,14 @@ methods
 
 # Convert the data set in INSPIIRED pipeline to the format that can be used in IS-Seq firstly
 
-Rscript path/to/ConvertINSPIIREDDataToISseq.R path/to/Undetermined_S0_L001_I1_001.fastq.gz path/to/Undetermined_S0_L001_R1_001.fastq.gz path/to/Undetermined_S0_L001_R2_001.fastq.gz path/to/Output R2.fq R1.fq path/to/python_used/site-packages
+# check which python is used
+
+# echo $(python -c "import site; print(site.getsitepackages()[0])")
+# for example: 
+# after issuing this command, you get:
+# /home/ubuntu/miniconda2/lib/python2.7/site-packages
+
+Rscript path/to/ConvertINSPIIREDDataToISseq.R path/to/Undetermined_S0_L001_I1_001.fastq.gz path/to/Undetermined_S0_L001_R1_001.fastq.gz path/to/Undetermined_S0_L001_R2_001.fastq.gz path/to/Output R2.fq R1.fq /home/ubuntu/miniconda2/lib/python2.7/site-packages
 
 # Run read based firstly
 
@@ -353,7 +360,15 @@ website
 ##### demultiplex
 
 ``` bash
-Rscript path/to/IS-Seq/R/demultiplex.R path/to/Undetermined_S0_L001_I1_001.fastq.gz path/to/IS-Seq/utilsRefData/INSPIIRED/completeMetadata.RData path/to/Undetermined_S0_L001_R1_001.fastq.gz path/to/Undetermined_S0_L001_R2_001.fastq.gz path/to/INSPIIRED_test_output
+
+# check which python is used
+
+# echo $(python -c "import site; print(site.getsitepackages()[0])")
+# for example: 
+# after issuing this command, you get:
+# /home/ubuntu/miniconda2/lib/python2.7/site-packages
+
+Rscript path/to/IS-Seq/R/demultiplex.R path/to/Undetermined_S0_L001_I1_001.fastq.gz path/to/IS-Seq/utilsRefData/INSPIIRED/completeMetadata.RData path/to/Undetermined_S0_L001_R1_001.fastq.gz path/to/Undetermined_S0_L001_R2_001.fastq.gz path/to/INSPIIRED_test_output /home/ubuntu/miniconda2/lib/python2.7/site-packages
 ```
 
 ##### Trim\_After\_Demultiplex
