@@ -14,7 +14,7 @@ print str(sys.argv[3])
 
 out_handle = open(str(sys.argv[2]),"w")
 
-for seq_record in SeqIO.parse(str(sys.argv[1]), "fastq"):  
+for seq_record in SeqIO.parse(str(sys.argv[1]), "fasta"):  
   
   #print str(seq_record.seq)
   res = decode(str(seq_record.seq))
