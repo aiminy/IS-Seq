@@ -6,7 +6,7 @@
 
 # PYTHONPATH='/home/ubuntu/miniconda2/lib/python2.7/site-packages'
 
-# Rscript path/to/IS-Seq/R/demultiplex.R path/to/IS-Seq/testCases/intSiteValidation/Data/Undetermined_S0_L001_I1_001.fastq.gz path/to/IS-Seq/testCases/intSiteValidation/completeMetadata.RData path/to/IS-Seq/testCases/intSiteValidation/Data/Undetermined_S0_L001_R1_001.fastq.gz path/to/IS-Seq/testCases/intSiteValidation/Data/Undetermined_S0_L001_R2_001.fastq.gz path/to/INSPIIRED_test_output /home/ubuntu/miniconda2/lib/python2.7/site-packages
+# Rscript ~/IS-Seq/R/demultiplex.R ~/intsitecaller/testCases/intSiteValidation/Data/Undetermined_S0_L001_I1_001.fastq.gz ~/IS-Seq/utilsRefData/INSPIIRED/completeMetadata.RData ~/intsitecaller/testCases/intSiteValidation/Data/Undetermined_S0_L001_R1_001.fastq.gz ~/intsitecaller/testCases/intSiteValidation/Data/Undetermined_S0_L001_R2_001.fastq.gz ~/SHARE/Aimin/INSPIIRED_test_output /home/ubuntu/miniconda2/lib/python2.7/site-packages
 
 initial.options <- commandArgs(trailingOnly = FALSE)
 print(initial.options)
@@ -45,11 +45,12 @@ if (length(args)==0) {
 
   print(I1)
 
-
   I1 <- trimTailw(I1, 2, "0", 12)
   I1 <- I1[width(I1)==max(width(I1))]
   I1 <- split(I1, ceiling(seq_along(I1)/500000))
 
+  PYTHONPATH=PYTHONPATH
+  
   for(chunk in names(I1)){
     
     output_fasta=file.path(output.dir,paste0("trimmedI1-", chunk, ".fasta"))
@@ -96,11 +97,11 @@ writeLog <- function(...)
   
    for(i in arguments){
 	   if ( typeof(i) == "character" ){
-		write(i,file='intSiteCaller.log',append=T)
+		write(i,file=file.path(output.dir,'intSiteCaller.log'),append=T)
          }else{
-		 w <- try(write.table(i,file='intSiteCaller.log',append=T,sep="\t",quote=F))
+		 w <- try(write.table(i,file=file.path(output.dir,'intSiteCaller.log'),append=T,sep="\t",quote=F))
 		 if (class(w) == "try-error"){
-			 write.table("Could not write requested data item\n",file='intSiteCaller.log',append=T,sep="\t",quote=F)}
+			 write.table("Could not write requested data item\n",file=file.path(output.dir,'intSiteCaller.log'),append=T,sep="\t",quote=F)}
 	 }
    }
 }
