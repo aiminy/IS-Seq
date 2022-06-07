@@ -353,7 +353,7 @@ website
 ##### demultiplex
 
 ``` bash
-Rscript path/to/IS-Seq/R/demultiplex.R path/to/IS-Seq/testCases/intSiteValidation/Data/Undetermined_S0_L001_I1_001.fastq.gz path/to/IS-Seq/testCases/intSiteValidation/completeMetadata.RData path/to/IS-Seq/testCases/intSiteValidation/Data/Undetermined_S0_L001_R1_001.fastq.gz path/to/IS-Seq/testCases/intSiteValidation/Data/Undetermined_S0_L001_R2_001.fastq.gz path/to/INSPIIRED_test_output
+Rscript path/to/IS-Seq/R/demultiplex.R path/to/Undetermined_S0_L001_I1_001.fastq.gz path/to/IS-Seq/utilsRefData/INSPIIRED/completeMetadata.RData path/to/Undetermined_S0_L001_R1_001.fastq.gz path/to/Undetermined_S0_L001_R2_001.fastq.gz path/to/INSPIIRED_test_output
 ```
 
 ##### Trim\_After\_Demultiplex
