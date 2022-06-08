@@ -374,7 +374,12 @@ Rscript path/to/IS-Seq/R/demultiplex.R path/to/Undetermined_S0_L001_I1_001.fastq
 ##### Trim\_After\_Demultiplex
 
 ``` bash
-Rscript path/to/IS-Seq/R/Trim_After_Demultiplex.R path/to/IS-Seq/testCases/intSiteValidation/completeMetadata.RData path/to/IS-Seq/MyTest/demultiplexedReps/clone1-1_R1.fastq.gz path/to/IS-Seq/MyTest/demultiplexedReps/clone1-1_R2.fastq.gz path/to/IS-Seq/testCases/intSiteValidation/p746vector.fasta path/to/IS-Seq/testCases/intSiteValidation/hg18.2bit path/to/ISseqOutput/INSPIIRED_test_run
+
+# Make hg18.2bit file firstly 
+
+Rscript path/to/IS-Seq/R/makeREFIndex4INSPIIRED.R -i hg18 -o path/to/output
+
+Rscript path/to/IS-Seq/R/Trim_After_Demultiplex.R path/to/IS-Seq/utilsRefData/INSPIIRED/completeMetadata.RData path/to/INSPIIRED_test_output/demultiplexedReps/clone1-1_R1.fastq.gz path/to/INSPIIRED_test_output/demultiplexedReps/clone1-1_R2.fastq.gz path/to/IS-Seq/utilsRefData/INSPIIRED/p746vector.fasta path/to/output/hg18.2bit path/to/INSPIIRED_test_output
 ```
 
 ##### call IS using blat-aligned R1 and R2 psl files
