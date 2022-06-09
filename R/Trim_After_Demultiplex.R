@@ -1,4 +1,4 @@
-# Rscript ~/IS-Seq/R/Trim_After_Demultiplex.R ~/IS-Seq/utilsRefData/INSPIIRED/completeMetadata.RData ~/SHARE/Aimin/INSPIIRED_test_output/demultiplexedReps/clone1-1_R1.fastq.gz ~/SHARE/Aimin/INSPIIRED_test_output/demultiplexedReps/clone1-1_R2.fastq.gz ~/IS-Seq/utilsRefData/INSPIIRED/p746vector.fasta ~/SHARE/Aimin/INSPIIRED_test_output/hg18/hg18ChrOnly.2bit ~/SHARE/Aimin/INSPIIRED_test_output/clone1_1
+# Rscript ~/IS-Seq/R/Trim_After_Demultiplex.R ~/IS-Seq/utilsRefData/INSPIIRED/completeMetadata.RData ~/SHARE/Aimin/INSPIIRED_test_output/demultiplexedReps/clone1-1_R1.fastq.gz ~/SHARE/Aimin/INSPIIRED_test_output/demultiplexedReps/clone1-1_R2.fastq.gz ~/IS-Seq/utilsRefData/INSPIIRED/p746vector.fasta ~/SHARE/Aimin/INSPIIRED_test_output/hg18/hg18ChrOnly.2bit ~/SHARE/Aimin/INSPIIRED_test_output clone1-1
 
 args = commandArgs(trailingOnly=TRUE)
 if (length(args)<6) {
@@ -10,33 +10,28 @@ if (length(args)<6) {
   vectorSeq=args[4]
   ref.bit=args[5]
   output.dir=args[6]
+  sample.alias=args[7]
 }
+
+output.dir <- file.path(output.dir,sample.alias)
 
 if(!dir.exists(output.dir)){dir.create(output.dir,recursive = TRUE)}
 
 library(ShortRead)
 
-#completeMetadata <- get(load('/home/ubuntu/intsitecaller/testCases/intSiteValidation/completeMetadata.RData'))
-
 completeMetadata <- get(load(completeMetadata))
 
-alias <- completeMetadata[1,]$alias
+index <- which(completeMetadata$alias==sample.alias)
+
+alias <- completeMetadata[index,]$alias
 
 stats.bore <- data.frame(sample=alias)
-
-#read1 <- '/home/ubuntu/intsitecaller/MyTest/demultiplexedReps/clone1-1_R1.fastq.gz'
-#read2 <- '/home/ubuntu/intsitecaller/MyTest/demultiplexedReps/clone1-1_R2.fastq.gz'
 
 read1 <- r1
 read2 <- r2
 
 vectorSeq <- vectorSeq
 ref.bit <-  ref.bit
-
-#'/home/ubuntu/intsitecaller/testCases/intSiteValidation/hg18.2bit'
-
-
-
 
 reads <- lapply(list(read1, read2), sapply, readFastq)
 
@@ -70,13 +65,14 @@ r <- lapply(reads, function(x){
 
 reads <- sapply(r, "[[", 1)
 qualities <- sapply(r, "[[", 2)
+
 #this is needed for primerID quality scores later on
 R1Quality <- qualities[[1]]
 
 print(t(stats.bore), quote=FALSE)
 
-primer <- completeMetadata[1,]$primer
-ltrbit <- completeMetadata[1,]$ltrBit
+primer <- completeMetadata[index,]$primer
+ltrbit <- completeMetadata[index,]$ltrBit
 
 PairwiseAlignmentsSingleSubject2DF <- function(PA, shift=0) {
   stopifnot("PairwiseAlignmentsSingleSubject"  %in% class(PA))
@@ -133,10 +129,9 @@ trim_Ltr_side_reads <- function(reads.p, primer, ltrbit, maxMisMatch=0) {
   return(reads.p)
 }
 
-
 reads.p <- trim_Ltr_side_reads(reads[[2]], primer, ltrbit)
 
-linker <- completeMetadata[1,]$linkerSequence
+linker <- completeMetadata[index,]$linkerSequence
 
 trim_primerIDlinker_side_reads <- function(reads.l, linker, maxMisMatch=3) {
   
@@ -244,15 +239,15 @@ trim_overreading <- function(reads, marker, maxMisMatch=3) {
   reads <- subseq(reads, 1, odf$cut)
 }
 
-linker_common <- completeMetadata[1,]$linkerCommon
+linker_common <- completeMetadata[index,]$linkerCommon
 
 reads.p.o <- trim_overreading(reads.p, linker_common, 3)
 
-largeLTRFrag <- completeMetadata[1,]$largeLTRFrag
+largeLTRFrag <- completeMetadata[index,]$largeLTRFrag
 
 reads.l.o <- trim_overreading(reads.l, substr(largeLTRFrag, 1, 20), 3)
 
-mingDNA <- completeMetadata[1,]$mingDNA
+mingDNA <- completeMetadata[index,]$mingDNA
 
 # select sequence length > 30 for R1 and R2 
 reads.pp <- reads.p.o[which(width(reads.p.o) > mingDNA)]
@@ -358,12 +353,9 @@ findVectorReads <- function(vectorSeq, primerLTR="GAAAATCTCTAGCA",
   return(vqName)
 }
 
-#vectorSeq <- '/home/ubuntu/intsitecaller/testCases/intSiteValidation/p746vector.fasta'
-
 primerLTR <- paste0(primer, ltrbit)
 
 vqName <- findVectorReads(vectorSeq,paste0(primer, ltrbit),reads.p, reads.l,debug=TRUE)
-
 
 print(vqName)
 
@@ -372,9 +364,7 @@ reads.p <- reads.p[toload]
 reads.l <- reads.l[toload]
 stats.bore$vTrimed <- length(reads.p)
 
-
 print(stats.bore)
-
 
 reads.p.u <- unique(reads.p)
 reads.l.u <- unique(reads.l)
@@ -384,7 +374,6 @@ print(reads.p.u)
 
 print(reads.l)
 print(reads.l.u)
-
 
 reads.p30.u <- unique(subseq(reads.p,1,mingDNA))
 
@@ -413,7 +402,6 @@ chunkSize <- 30000
 
 stats.bore$lLen <- as.integer(mean(width(reads.l)))  
 stats.bore$pLen <- as.integer(mean(width(reads.p)))
-
 
 stats <- data.frame()
 
@@ -445,8 +433,6 @@ if(length(toload) > 0){
 
 print(stats)
 
-#ref.bit <- '/home/ubuntu/intsitecaller/testCases/intSiteValidation/hg18.2bit'
-
 cmd <- paste0('blat ', ref.bit,' ',file.path(output.dir,'R1-1.fa'),' ',file.path(output.dir,'R1-1.fa.psl'),' ','-tileSize=11 -stepSize=9 -minIdentity=85 -maxIntron=5 -minScore=27 -dots=1000 -out=psl -noHead')
 
 system(cmd)
@@ -455,15 +441,4 @@ cmd <- paste0('blat ', ref.bit,' ',file.path(output.dir,'R2-1.fa'),' ',file.path
 
 system(cmd)
 
-    
 #Rscript ~/intsitecaller/PslToIs.R R1-1.fa.psl R2-1.fa.psl keys.rds ~/intsitecaller/testCases/intSiteValidation/completeMetadata.RData /home/ubuntu/intsitecaller/clone1-1
-
-
-
-
-
-
-
-
-
-
