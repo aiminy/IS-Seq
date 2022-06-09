@@ -2,6 +2,16 @@
 
 # Rscript /home/ubuntu/intsitecaller/PslToIs_one_replicate_change_sequence_similarity.R /home/ubuntu/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/R2_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P7-Rd2-LC.20.fq_trimwithCutAdapt_HL60cl60HL60Poly100_ReadyToAlignSort.fa.psl /home/ubuntu/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/R1_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P5-Rd1-LTR.16.fq_trimwithCutAdapt_HL60cl60HL60Poly100_ReadyToAlignSort.fa.psl /home/ubuntu/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/keys.rds ~/intsitecaller/testCases/intSiteValidation/completeMetadata.RData /home/ubuntu/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/rev0 hg38 1 0
 
+# Rscript ~/IS-Seq/R/PslToIs_one_replicate_change_sequence_similarity.R /home/ubuntu/SHARE/Aimin/INSPIIRED_test_output/clone1-1/R1-1.fa.psl /home/ubuntu/SHARE/Aimin/INSPIIRED_test_output/clone1-1/R2-1.fa.psl /home/ubuntu/SHARE/Aimin/INSPIIRED_test_output/clone1-1/keys.rds ~/IS-Seq/utilsRefData/INSPIIRED/completeMetadata.RData ~/SHARE/Aimin/INSPIIRED_test_output/clone1-1/IS_95 hg18 1 95
+
+initial.options <- commandArgs(trailingOnly = FALSE)
+print(initial.options)
+
+file.arg.name <- "--file="
+script.name <- sub(file.arg.name, "", initial.options[grep(file.arg.name, initial.options)])
+script.dirname <- dirname(script.name)
+print(script.dirname)
+
 args = commandArgs(trailingOnly=TRUE)
 
 if (length(args)==0) {
@@ -87,11 +97,8 @@ stats <- data.frame(readsAligning=readsAligning)
 
 print(stats)
 
-source('~/intsitecaller/quality_filter.R')
-source('~/intsitecaller/processBLATData.R')
-
-
-
+source(file.path(script.dirname,'quality_filter.R'))
+source(file.path(script.dirname,'processBLATData.R'))
 
 u=index
 
