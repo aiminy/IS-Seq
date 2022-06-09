@@ -1,4 +1,4 @@
-# Rscript /home/ubuntu/intsitecaller/testCases/intSiteValidation/completeMetadata.RData /home/ubuntu/intsitecaller/MyTest/demultiplexedReps/clone1-1_R1.fastq.gz /home/ubuntu/intsitecaller/MyTest/demultiplexedReps/clone1-1_R2.fastq.gz /home/ubuntu/intsitecaller/testCases/intSiteValidation/p746vector.fasta /home/ubuntu/intsitecaller/testCases/intSiteValidation/hg18.2bit ~/SHARE/ISseqOutput/INSPIIRED_test_run
+# Rscript ~/IS-Seq/R/Trim_After_Demultiplex.R ~/IS-Seq/utilsRefData/INSPIIRED/completeMetadata.RData ~/SHARE/Aimin/INSPIIRED_test_output/demultiplexedReps/clone1-1_R1.fastq.gz ~/SHARE/Aimin/INSPIIRED_test_output/demultiplexedReps/clone1-1_R2.fastq.gz ~/IS-Seq/utilsRefData/INSPIIRED/p746vector.fasta ~/SHARE/Aimin/INSPIIRED_test_output/hg18/hg18ChrOnly.2bit ~/SHARE/Aimin/INSPIIRED_test_output/clone1_1
 
 args = commandArgs(trailingOnly=TRUE)
 if (length(args)<6) {
@@ -9,7 +9,7 @@ if (length(args)<6) {
   r2=args[3]
   vectorSeq=args[4]
   ref.bit=args[5]
-  output.dir==args[6]
+  output.dir=args[6]
 }
 
 if(!dir.exists(output.dir)){dir.create(output.dir,recursive = TRUE)}
@@ -320,12 +320,12 @@ findVectorReads <- function(vectorSeq, primerLTR="GAAAATCTCTAGCA",
   hits.v.p <- try(readpsl(blatSeqs(query=reads.p, subject=Vector,     
                                    blatParameters=blatParameters, parallel=F)))
   if( class(hits.v.p) == "try-error" ) hits.v.p <- data.frame()
-  if ( debug ) save(hits.v.p, file="hits.v.p.RData")    
+  if ( debug ) save(hits.v.p, file=file.path(output.dir,"hits.v.p.RData"))    
   
   hits.v.l <- try(readpsl(blatSeqs(query=reads.l, subject=Vector, 
                                    blatParameters=blatParameters, parallel=F)))
   if( class(hits.v.l) == "try-error" ) hits.v.l <- data.frame()
-  if ( debug ) save(hits.v.l, file="hits.v.l.RData")    
+  if ( debug ) save(hits.v.l, file=file.path(output.dir,"hits.v.l.RData"))    
   
   ## Sometimes the vector files received from collaborators are different from the 
   ## vector put in human host. So, it is not feasible to put a lot of constrains.
@@ -347,8 +347,8 @@ findVectorReads <- function(vectorSeq, primerLTR="GAAAATCTCTAGCA",
   ##                                tStart.y <= tStart.x+2000)
   
   if ( debug ) {
-    save(reads.p, file="reads.p.RData")
-    save(reads.l, file="reads.l.RData")
+    save(reads.p, file=file.path(output.dir,"reads.p.RData"))
+    save(reads.l, file=file.path(output.dir,"reads.l.RData"))
   }
   
   vqName <- unique(hits.v$qName)
@@ -407,7 +407,7 @@ keys$readPairKey <- paste0(keys$R1, "_", keys$R2)
 
 print(keys)
 
-saveRDS(keys, file="keys.rds")
+saveRDS(keys, file=file.path(output.dir,"keys.rds"))
 
 chunkSize <- 30000
 
@@ -419,25 +419,25 @@ stats <- data.frame()
 
 stats <- rbind(stats, stats.bore)
 
-save(stats, file="stats.RData")
+save(stats, file=file.path(output.dir,"stats.RData"))
 
 if(length(toload) > 0){
   
   chunks.p <- split(seq_along(reads.p.u), ceiling(seq_along(reads.p.u)/chunkSize))
   for(i in c(1:length(chunks.p))){
     writeXStringSet(reads.p.u[chunks.p[[i]]],
-                    file=paste0("R2-", i, ".fa"),
+                    file=file.path(output.dir,paste0("R2-", i, ".fa")),
                     append=FALSE)
   }
   
   chunks.l <- split(seq_along(reads.l.u), ceiling(seq_along(reads.l.u)/chunkSize))
   for(i in c(1:length(chunks.l))){    
     writeXStringSet(reads.l.u[chunks.l[[i]]],
-                    file=paste0("R1-", i, ".fa"),
+                    file=file.path(output.dir,paste0("R1-", i, ".fa")),
                     append=FALSE)
   }
   
-  save(stats, file="stats.RData")
+  save(stats, file=file.path(output.dir,"stats.RData"))
   alias #return 'value' which ultimately gets saved as trimStatus.RData
 }else{
   stop("error - no curated reads")
@@ -447,11 +447,11 @@ print(stats)
 
 #ref.bit <- '/home/ubuntu/intsitecaller/testCases/intSiteValidation/hg18.2bit'
 
-cmd <- paste0('blat ', ref.bit,' ','R1-1.fa',' ','R1-1.fa.psl',' ','-tileSize=11 -stepSize=9 -minIdentity=85 -maxIntron=5 -minScore=27 -dots=1000 -out=psl -noHead')
+cmd <- paste0('blat ', ref.bit,' ',file.path(output.dir,'R1-1.fa'),' ',file.path(output.dir,'R1-1.fa.psl'),' ','-tileSize=11 -stepSize=9 -minIdentity=85 -maxIntron=5 -minScore=27 -dots=1000 -out=psl -noHead')
 
 system(cmd)
 
-cmd <- paste0('blat ', ref.bit,' ','R2-1.fa',' ','R2-1.fa.psl',' ','-tileSize=11 -stepSize=9 -minIdentity=85 -maxIntron=5 -minScore=27 -dots=1000 -out=psl -noHead')
+cmd <- paste0('blat ', ref.bit,' ',file.path(output.dir,'R2-1.fa'),' ',file.path(output.dir,'R2-1.fa.psl'),' ','-tileSize=11 -stepSize=9 -minIdentity=85 -maxIntron=5 -minScore=27 -dots=1000 -out=psl -noHead')
 
 system(cmd)
 
