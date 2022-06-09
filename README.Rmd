@@ -326,7 +326,9 @@ Rscript path/to/IS-Seq/R/demultiplex.R path/to/Undetermined_S0_L001_I1_001.fastq
 
 Rscript path/to/IS-Seq/R/makeREFIndex4INSPIIRED.R -i hg18 -o path/to/output
 
-Rscript path/to/IS-Seq/R/Trim_After_Demultiplex.R path/to/IS-Seq/utilsRefData/INSPIIRED/completeMetadata.RData path/to/INSPIIRED_test_output/demultiplexedReps/clone1-1_R1.fastq.gz path/to/INSPIIRED_test_output/demultiplexedReps/clone1-1_R2.fastq.gz path/to/IS-Seq/utilsRefData/INSPIIRED/p746vector.fasta path/to/output/hg18.2bit path/to/INSPIIRED_test_output
+# Read the demultiplexed *R1.fastq.gz and *R2.fastq.gz, and align by blat to get R1-1.fa.psl and R2-1.fa.psl
+
+Rscript path/to/IS-Seq/R/Trim_After_Demultiplex.R path/to/IS-Seq/utilsRefData/INSPIIRED/completeMetadata.RData path/to/INSPIIRED_test_output/demultiplexedReps/clone1-1_R1.fastq.gz path/to/INSPIIRED_test_output/demultiplexedReps/clone1-1_R2.fastq.gz path/to/IS-Seq/utilsRefData/INSPIIRED/p746vector.fasta path/to/output/hg18/hg18ChrOnly.2bit path/to/INSPIIRED_test_output clone1-1
 
 ```
 
