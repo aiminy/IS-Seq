@@ -149,8 +149,6 @@ INSP.mle.is.gr <- MakeGr(INSP.mle)
 saveRDS(INSP.mle.long.gr,file.path(output.dir,'INSP.mle.long.gr.rds'))
 saveRDS(INSP.mle.is.gr,file.path(output.dir,'INSP.mle.is.gr.rds'))
 
-#source('/Users/aiminyan/Aimin/ispipe/R/GroupIsFunction.R')
-
 source(file.path(script.dirname,'GroupIsFunction.R'))
 
 IS.grouped <- GroupIs(INSP.mle.long.gr,INSP.mle.is.gr)
@@ -159,93 +157,4 @@ print(IS.grouped)
 
 saveRDS(IS.grouped,file.path(output.dir,'IS.grouped.rds'))
 
-# IS.grouped.gr <- makeGRangesFromDataFrame(data.frame(chr=IS.grouped$seqnames,start=IS.grouped$start,end=IS.grouped$start,strand=IS.grouped$strand,IS.grouped[,-c(1:3)]),keep.extra.columns = T)
-# 
-# getRelativeAbundance <- function(data.collision) {
-#   A=S4Vectors::as.matrix(data.collision)
-#   B <- apply(A,2,function(u){round((u/sum(u))*100,3)})
-#   B
-# }
-# 
-# z <- getRelativeAbundance(mcols(IS.grouped.gr))
-# 
-# IS.grouped.gr.relative <- cbind(as.data.frame(granges(IS.grouped.gr)),z)
-# 
-# data.ordered.1 <- data.frame(Is_location=paste0(IS.grouped.gr.relative$seqnames,'_',IS.grouped.gr.relative$start,'_',IS.grouped.gr.relative$strand),IS.grouped.gr.relative[,-c(1:5)])
-# 
-# 
-# GetSortedIsByRelAbun <- function(data.ordered.1) {
-#   trt <- colnames(data.ordered.1)[-1]
-#   
-#   data.ordered.L <- lapply(1:length(trt), function(u){
-#     
-#     #u <- 1
-#     index <- which(colnames(data.ordered.1)==trt[u])
-#     
-#     y <- data.ordered.1[,c(1,index)]
-#     
-#     z <- y[y[,2]!=0,]
-#     
-#     w <- data.frame(trt=rep(colnames(z)[2],dim(z)[1]),location=z[,1],value=z[,2])
-#     
-#     w <- w[order(w$value,decreasing = T),]
-#     
-#     n <- dim(w)[1]
-#     
-#     w$value <- as.numeric(w$value)
-#     
-#     
-#     if (n<=10){
-#       t <- data.frame(trt=unique(w[1:n,]$trt),location='Others',value= sum(w[-c(1:n),]$value))
-#       ww <- rbind(w[1:n,],t)
-#     }else
-#     {
-#       t <- data.frame(trt=unique(w[1:10,]$trt),location='Others',value= sum(w[-c(1:10),]$value))
-#       ww <- rbind(w[1:10,],t)
-#     }
-#     
-#     ww
-#   })
-#   
-#   names(data.ordered.L) <- trt
-#   data.ordered.L
-# }
-# 
-# #data.ordered.1 <- Is.Rel.gr[[1]]
-# 
-# INSP.top.10.IS <- GetSortedIsByRelAbun(data.ordered.1)
-# 
-# saveRDS(INSP.top.10.IS,file.path(output.dir,'INSP.top.10.IS.rds'))
-# 
-# GetMSE <- function(IsSeq.top.10.IS) {
-#   
-#   MSE <- lapply(1:length(IsSeq.top.10.IS), function(u,IsSeq.top.10.IS){
-#     
-#     if(names(IsSeq.top.10.IS)[u]=='CL6'){
-#       #u <- 1
-#       mse <- sum((IsSeq.top.10.IS[[u]][1,]$value-c(100))^2)/1
-#     }else if(names(IsSeq.top.10.IS)[u]=='CLH4'){
-#       mse <- sum((IsSeq.top.10.IS[[u]][1:5,]$value-c(20,20,20,20,20))^2)/5
-#     }else if(names(IsSeq.top.10.IS)[u]=='MOI30CLB6'){
-#       mse <- sum((IsSeq.top.10.IS[[u]][1:3,]$value-c(33.33333,33.33333,33.33333))^2)/3
-#     }else{
-#       mse <- sum((IsSeq.top.10.IS[[u]][1:2,]$value-c(50,50))^2)/2
-#     }
-#     
-#     mse <- round(mse,2)
-#     mse
-#   },IsSeq.top.10.IS)
-#   
-#   names(MSE) <- names(IsSeq.top.10.IS)
-#   MSE <- t(as.data.frame(MSE))
-#   MSE
-# }
-# 
-# names(INSP.top.10.IS) <- gsub('\\.','',names(INSP.top.10.IS))
-# INSP.mse <- GetMSE(INSP.top.10.IS)
-# 
-# print(INSP.mse)
-# 
-# saveRDS(INSP.mse,file.path(output.dir,'INSP.mse.rds'))
-# save.image(file.path(output.dir,"Results.RData"))
-# 
+save.image(file.path(output.dir,"Results.RData"))
