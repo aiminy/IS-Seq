@@ -322,7 +322,7 @@ Rscript path/to/IS-Seq/R/demultiplex.R path/to/Undetermined_S0_L001_I1_001.fastq
 ##### Trim_After_Demultiplex
 ```bash
 
-# Make hg18.2bit file firstly 
+# Make hg18ChrOnly.2bit file firstly 
 
 Rscript path/to/IS-Seq/R/makeREFIndex4INSPIIRED.R -i hg18 -o path/to/output
 
@@ -334,7 +334,12 @@ Rscript path/to/IS-Seq/R/Trim_After_Demultiplex.R path/to/IS-Seq/utilsRefData/IN
 
 ##### call IS using blat-aligned R1 and R2 psl files
 ```bash
+
+# INSPIIRED clone1-1
+Rscript ~/IS-Seq/R/PslToIs_one_replicate_change_sequence_similarity.R path/to/INSPIIRED_test_output/clone1-1/R1-1.fa.psl path/to/INSPIIRED_test_output/clone1-1/R2-1.fa.psl path/to/INSPIIRED_test_output/clone1-1/keys.rds ~/IS-Seq/utilsRefData/INSPIIRED/completeMetadata.RData path/to/INSPIIRED_test_output/clone1-1/IS_95 hg18 1 95
+
 Rscript path/to/IS-Seq/R/PslToIs_one_replicate_change_sequence_similarity.R path/to/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/R2_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P7-Rd2-LC.20.fq_trimwithCutAdapt_HL60cl60HL60Poly100_ReadyToAlignSort.fa.psl path/to/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/R1_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P5-Rd1-LTR.16.fq_trimwithCutAdapt_HL60cl60HL60Poly100_ReadyToAlignSort.fa.psl path/to/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/keys.rds path/to/IS-Seq/testCases/intSiteValidation/completeMetadata.RData path/to/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/rev0 hg18 1 0
+
 ```
 
 
