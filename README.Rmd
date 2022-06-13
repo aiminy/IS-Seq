@@ -336,9 +336,10 @@ Rscript path/to/IS-Seq/R/Trim_After_Demultiplex.R path/to/IS-Seq/utilsRefData/IN
 ```bash
 
 # INSPIIRED clone1-1
-Rscript ~/IS-Seq/R/PslToIs_one_replicate_change_sequence_similarity.R path/to/INSPIIRED_test_output/clone1-1/R1-1.fa.psl path/to/INSPIIRED_test_output/clone1-1/R2-1.fa.psl path/to/INSPIIRED_test_output/clone1-1/keys.rds ~/IS-Seq/utilsRefData/INSPIIRED/completeMetadata.RData path/to/INSPIIRED_test_output/clone1-1/IS_95 hg18 1 95
+Rscript ~/IS-Seq/R/PslToIs_one_replicate_change_sequence_similarity.R path/to/INSPIIRED_test_output/clone1-1/R1-1.fa.psl path/to/INSPIIRED_test_output/clone1-1/R2-1.fa.psl path/to/INSPIIRED_test_output/clone1-1/keys.rds ~/IS-Seq/utilsRefData/INSPIIRED/completeMetadata.RData path/to/INSPIIRED_test_output/clone1-1/IS_0 hg18 1 0
 
-Rscript path/to/IS-Seq/R/PslToIs_one_replicate_change_sequence_similarity.R path/to/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/R2_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P7-Rd2-LC.20.fq_trimwithCutAdapt_HL60cl60HL60Poly100_ReadyToAlignSort.fa.psl path/to/SHARE/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/R1_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P5-Rd1-LTR.16.fq_trimwithCutAdapt_HL60cl60HL60Poly100_ReadyToAlignSort.fa.psl path/to/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/keys.rds path/to/IS-Seq/testCases/intSiteValidation/completeMetadata.RData path/to/ISseqOutput/Feb9G222/IsaByINSPIIRED/fa/HL60cl60HL60Poly100/rev0 hg18 1 0
+# Get Fragment MLE
+Rscript ~/IS-Seq/R/GetFragMLE.R path/to/INSPIIRED_test_output/clone1-1/IS_0/allSites.rds clone1-1 path/to/INSPIIRED_test_output/clone1-1/IS_0
 
 ```
 
