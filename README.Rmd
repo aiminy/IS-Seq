@@ -268,6 +268,50 @@ Notes : For one sample of paired-end data with R1(2.4G) and R2(2.6G), you need t
 The following Figure shows the differences on some insert sites among 3 methods 
 ![results](doc/resultsOf3methods.png){width=80%}
 
+### A DEMO using a simulated data to show how to run IS-Seq
+
+```{bash eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
+mkdir DEMO
+cd DEMO
+
+git clone https://github.com/aiminy/IS-Seq.git
+
+# Since hg38 reference genome reference FASTA and its bwa index and repeatMaskerhg38BED are not included in this GitHub repository,
+# so user needs to make these files be ready before using IS-Seq
+
+# Make hg38 reference genome reference FASTA and its index under /home/ubuntu/DEMO/IS-Seq/utilsRefData/IsSeq/hg38
+
+Rscript /home/ubuntu/DEMO/IS-Seq/R/makeREFIndex.R -i https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_40/GRCh38.primary_assembly.genome.fa.gz -g https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_40/gencode.v40.annotation.gtf.gz -o /home/ubuntu/DEMO/IS-Seq/utilsRefData/IsSeq/hg38/GRCh38.primary_assembly.genome.fa
+
+# Make repeatMaskerhg38BED under /home/ubuntu/DEMO/IS-Seq/utilsRefData/IsSeq/hg38
+Go to https://genome.ucsc.edu/cgi-bin/hgTables, and select assembly hg38, track RepeakMasker, group Repeats, Output format BED, output filename repeatMaskerhg38BED, get output, and move repeatMaskerhg38BED to /home/ubuntu/DEMO/IS-Seq/utilsRefData/IsSeq/hg38
+
+# Read-based
+nohup python -u /home/ubuntu/DEMO/IS-Seq/ISpipelineFv3_test.py -1 /home/ubuntu/DEMO/IS-Seq/data/simulationUp_R1.fq.gz -2 /home/ubuntu/DEMO/IS-Seq/data/simulationUp_R2.fq.gz -s POOL-ISA-AVRO-6-Preclin -o /home/ubuntu/DEMO/ISseqOutput -t DEMO -r /home/ubuntu/DEMO/IS-Seq/sample_research/20210121_AssociationFIle_POOL6_Preclinical.csv -u /home/ubuntu/DEMO/IS-Seq/utilsRefData/IsSeq -p /home/ubuntu/DEMO/IS-Seq/utils -a read -c nothing -q 0 > logRead.txt 2>&1 &
+
+# check Read-based results:
+
+vi /home/ubuntu/DEMO/ISseqOutput/DEMO/CutAdapt/filterNo/db/DEMO/FinalOut_DEMO/POOL-ISA-AVRO-6-Preclin_HL60POS-CTRL-1CL-6_HL60_DEMO_CollisionClean_CollisionTable.txt
+
+vi /home/ubuntu/DEMO/ISseqOutput/DEMO/CutAdapt/filter60/db/DEMO/FinalOut_DEMO/POOL-ISA-AVRO-6-Preclin_HL60POS-CTRL-1CL-6_HL60_DEMO_CollisionClean_CollisionTable.txt
+
+# UMI-based
+nohup python -u /home/ubuntu/DEMO/IS-Seq/ISpipelineFv3_test.py -1 /home/ubuntu/DEMO/IS-Seq/data/simulationUp_R1.fq.gz -2 /home/ubuntu/DEMO/IS-Seq/data/simulationUp_R2.fq.gz -s POOL-ISA-AVRO-6-Preclin -o /home/ubuntu/DEMO/ISseqOutput -t DEMO -r /home/ubuntu/DEMO/IS-Seq/sample_research/20210121_AssociationFIle_POOL6_Preclinical.csv -u /home/ubuntu/DEMO/IS-Seq/utilsRefData/IsSeq -p /home/ubuntu/DEMO/IS-Seq/utils -a umi -c nothing -q 0 > logRead.txt 2>&1 &
+
+# check UMI-based results:
+vi /home/ubuntu/DEMO/ISseqOutput/DEMO/UmiBased/collision/Lenti_Human/filterNo/db/DEMO/FinalOut_DEMO/POOL-ISA-AVRO-6-Preclin_HL60POS-CTRL-1CL-6_HL60_DEMO_CollisionClean_CollisionTable.txt
+
+vi /home/ubuntu/DEMO/ISseqOutput/DEMO/UmiBased/collision/Lenti_Human/filter60/db/DEMO/FinalOut_DEMO/POOL-ISA-AVRO-6-Preclin_HL60POS-CTRL-1CL-6_HL60_DEMO_CollisionClean_CollisionTable.txt
+
+# Fragment-based
+nohup python -u /home/ubuntu/DEMO/IS-Seq/ISpipelineFv3_test.py -1 /home/ubuntu/DEMO/IS-Seq/data/simulationUp_R1.fq.gz -2 /home/ubuntu/DEMO/IS-Seq/data/simulationUp_R2.fq.gz -s POOL-ISA-AVRO-6-Preclin -o /home/ubuntu/DEMO/ISseqOutput -t DEMO -r /home/ubuntu/DEMO/IS-Seq/sample_research/20210121_AssociationFIle_POOL6_Preclinical.csv -u /home/ubuntu/DEMO/IS-Seq/utilsRefData/IsSeq -p /home/ubuntu/DEMO/IS-Seq/utils -a fragment -c nothing -q 0 > logRead.txt 2>&1 &
+
+# check Fragment-based results:
+vi /home/ubuntu/DEMO/ISseqOutput/DEMO/FragmentBased2/collision/Lenti_Human/filterNo/db/DEMO/FinalOut_DEMO/POOL-ISA-AVRO-6-Preclin_HL60POS-CTRL-1CL-6_HL60_DEMO_CollisionClean_CollisionTable.txt
+
+vi /home/ubuntu/DEMO/ISseqOutput/DEMO/FragmentBased2/collision/Lenti_Human/filter60/db/DEMO/FinalOut_DEMO/POOL-ISA-AVRO-6-Preclin_HL60POS-CTRL-1CL-6_HL60_DEMO_CollisionClean_CollisionTable.txt
+
+```
 
 ### To use IS-Seq on the data set from INSPIIRED pipeline, you need to run the following command:
 
