@@ -355,13 +355,15 @@ vi /home/ubuntu/DEMO/ISseqOutput/DEMO/FragmentBased2/collision/Lenti_Human/filte
 
 ``` bash
  
-Rscript /home/ubuntu/IS-Seq/R/FqToFa.R /home/ubuntu/DEMO/ISseqOutput/DEMO/R1_fastq_trim12nt_qcTrimmed_MatchBlastLtrLcDEMULTIPLEXINGTofq/R1_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P5-Rd1-LTR.9.fq_trimwithCutAdapt /home/ubuntu/DEMO/ISseqOutput/DEMO/CutAdapt/R1_R2_Barcode_FB-P5-Rd1-LTR.9_FB-P7-Rd2-LC.9_trimmedID demo /home/ubuntu/DEMO/ISseqOutput/DEMO/INSPIIRED /home/ubuntu/DEMO/IS-Seq/utilsRefData/IsSeq/hg38/hg38ChrOnly.fa
+Rscript /home/ubuntu/DEMO/IS-Seq/R/FqToFa.R /home/ubuntu/DEMO/ISseqOutput/DEMO/R1_fastq_trim12nt_qcTrimmed_MatchBlastLtrLcDEMULTIPLEXINGTofq/R1_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P5-Rd1-LTR.9.fq_trimwithCutAdapt /home/ubuntu/DEMO/ISseqOutput/DEMO/CutAdapt/R1_R2_Barcode_FB-P5-Rd1-LTR.9_FB-P7-Rd2-LC.9_trimmedID demo /home/ubuntu/DEMO/ISseqOutput/DEMO/INSPIIRED /home/ubuntu/DEMO/IS-Seq/utilsRefData/IsSeq/hg38/hg38ChrOnly.fa
 
-Rscript /home/ubuntu/IS-Seq/R/MakeKeys.R /home/ubuntu/DEMO/ISseqOutput/DEMO/INSPIIRED/R1_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P5-Rd1-LTR.9.fq_trimwithCutAdapt_demo_ReadyToAlignSort /home/ubuntu/DEMO/ISseqOutput/DEMO/INSPIIRED/R2_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P7-Rd2-LC.9.fq_trimwithCutAdapt_demo_ReadyToAlignSort demo /home/ubuntu/DEMO/ISseqOutput/DEMO/INSPIIRED
+Rscript /home/ubuntu/DEMO/IS-Seq/R/FqToFa.R /home/ubuntu/DEMO/ISseqOutput/DEMO/R2_fastq_trim12nt_qcTrimmed_MatchBlastLtrLcDEMULTIPLEXINGTofq/R2_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P7-Rd2-LC.9.fq_trimwithCutAdapt /home/ubuntu/DEMO/ISseqOutput/DEMO/CutAdapt/R1_R2_Barcode_FB-P5-Rd1-LTR.9_FB-P7-Rd2-LC.9_trimmedID demo /home/ubuntu/DEMO/ISseqOutput/DEMO/INSPIIRED /home/ubuntu/DEMO/IS-Seq/utilsRefData/IsSeq/hg38/hg38ChrOnly.fa
 
-Rscript /home/ubuntu/IS-Seq/R/PslToIs_one_replicate_change_sequence_similarity.R /home/ubuntu/DEMO/ISseqOutput/DEMO/INSPIIRED/R2_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P7-Rd2-LC.9.fq_trimwithCutAdapt_demo_ReadyToAlignSort.fa.psl /home/ubuntu/DEMO/ISseqOutput/DEMO/INSPIIRED/R1_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P5-Rd1-LTR.9.fq_trimwithCutAdapt_demo_ReadyToAlignSort.fa.psl /home/ubuntu/DEMO/ISseqOutput/DEMO/INSPIIRED/keys.rds /home/ubuntu/DEMO/IS-Seq/utilsRefData/INSPIIRED/completeMetadata.RData /home/ubuntu/DEMO/ISseqOutput/DEMO/INSPIIRED hg38 1 0
+Rscript /home/ubuntu/DEMO/IS-Seq/R/MakeKeys.R /home/ubuntu/DEMO/ISseqOutput/DEMO/INSPIIRED/R1_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P5-Rd1-LTR.9.fq_trimwithCutAdapt_demo_ReadyToAlignSort /home/ubuntu/DEMO/ISseqOutput/DEMO/INSPIIRED/R2_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P7-Rd2-LC.9.fq_trimwithCutAdapt_demo_ReadyToAlignSort demo /home/ubuntu/DEMO/ISseqOutput/DEMO/INSPIIRED
 
-Rscript /home/ubuntu/IS-Seq/R/GetFragMLE.R /home/ubuntu/DEMO/ISseqOutput/DEMO/INSPIIRED/allSites.rds demo /home/ubuntu/DEMO/ISseqOutput/DEMO/INSPIIRED
+Rscript /home/ubuntu/DEMO/IS-Seq/R/PslToIs_one_replicate_change_sequence_similarity.R /home/ubuntu/DEMO/ISseqOutput/DEMO/INSPIIRED/R2_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P7-Rd2-LC.9.fq_trimwithCutAdapt_demo_ReadyToAlignSort.fa.psl /home/ubuntu/DEMO/ISseqOutput/DEMO/INSPIIRED/R1_fastq_trim12nt_qcTrimmed_MatchBlastLtrLc_Barcode_FB-P5-Rd1-LTR.9.fq_trimwithCutAdapt_demo_ReadyToAlignSort.fa.psl /home/ubuntu/DEMO/ISseqOutput/DEMO/INSPIIRED/keys.rds /home/ubuntu/DEMO/IS-Seq/utilsRefData/INSPIIRED/completeMetadata.RData /home/ubuntu/DEMO/ISseqOutput/DEMO/INSPIIRED hg38 1 0
+
+Rscript /home/ubuntu/DEMO/IS-Seq/R/GetFragMLE.R /home/ubuntu/DEMO/ISseqOutput/DEMO/INSPIIRED/allSites.rds demo /home/ubuntu/DEMO/ISseqOutput/DEMO/INSPIIRED
 ```
 
 ### To use IS-Seq on the data set from INSPIIRED pipeline, you need to run the following command:
