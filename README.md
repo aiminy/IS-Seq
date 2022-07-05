@@ -15,9 +15,6 @@ This pipeline can generate 3 types of analysis results based on
 different counting methods. These 3 types of resutls are ReadBased,
 Umibased, and FragmentBased analysis, respectively.
 
-Please click this [Video](https://youtu.be/GfFzywa7rHc) to see a
-tutorial to use IS-Seq for integration sites analysis.
-
 ### To use IS-Seq in Linux workstation, you need to install the following software and modules
 
 -   Install conda and python 2.7.17
