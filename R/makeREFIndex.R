@@ -75,7 +75,7 @@ if(is.na(t.output)){
   }
   
   cat("make bwa index\n")
-  cmd4= paste0('bwa index -a bwtsw ',z)
+  cmd4= paste0('bwa-mem2 index -a bwtsw ',z)
   system(cmd4)
   
 }
