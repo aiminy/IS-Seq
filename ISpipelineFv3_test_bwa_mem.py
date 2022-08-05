@@ -2201,7 +2201,7 @@ def getCollisionTable(seqPlat,R1Out,R2Out,outputDir,sampleResearch,utilsDir,util
 						process = subprocess.Popen(mycmd,shell=True)
 						process.wait()
 
-						mycmd='''bwa-mem2 mem -t 8 '''+dirGenome+''' '''+r1filename+ '''_ReadyToAlignSort ''' +r2filename+ '''_ReadyToAlignSort > ''' +os.path.join(alignOut,"R1_R2_Barcode_"+lineSplitBrc[7]+"_"+lineSplitBrc[8]+"_aligned_mem.sam")
+						mycmd='''bwa-mem mem -t 8 '''+dirGenome+''' '''+r1filename+ '''_ReadyToAlignSort ''' +r2filename+ '''_ReadyToAlignSort > ''' +os.path.join(alignOut,"R1_R2_Barcode_"+lineSplitBrc[7]+"_"+lineSplitBrc[8]+"_aligned_mem.sam")
 						print mycmd
 						process = subprocess.Popen(mycmd,shell=True)
 						process.wait()
@@ -3595,7 +3595,7 @@ def align2vector(seqPlat,R1Out,R2Out,outputDir,sampleResearch,dirGenome,sampleNa
 						process = subprocess.Popen(mycmd,shell=True)
 						process.wait()
 
-						mycmd='''bwa-mem2 mem -t 8 '''+dirGenome+''' '''+r1filename+ '''_ReadyToAlignSort ''' +r2filename+ '''_ReadyToAlignSort > ''' +os.path.join(alignOut,"R1_R2_Barcode_"+lineSplitBrc[7]+"_"+lineSplitBrc[8]+"_aligned_mem.sam")
+						mycmd='''bwa-mem mem -t 8 '''+dirGenome+''' '''+r1filename+ '''_ReadyToAlignSort ''' +r2filename+ '''_ReadyToAlignSort > ''' +os.path.join(alignOut,"R1_R2_Barcode_"+lineSplitBrc[7]+"_"+lineSplitBrc[8]+"_aligned_mem.sam")
 						print mycmd
 						process = subprocess.Popen(mycmd,shell=True)
 						process.wait()
