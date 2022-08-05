@@ -1,0 +1,80 @@
+---
+title: "2To3"
+author: "Aimin"
+date: '2022-07-28'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r 2to3, echo=FALSE}
+
+2to3 --write --nobackups DEMO/IS-Seq-2to3
+pip install reindent
+
+reindent /home/ubuntu/DEMO/IS-Seq-2to3/ISpipelineFv3_test_bwa_mem.py
+
+pip3 install numpy
+
+pip3 install more_itertools
+pip3 install Bio
+
+sudo apt install ncbi-blast+
+
+conda install -c bioconda -y ea-utils
+
+conda install -c bioconda bwa-mem2
+
+conda install -c bioconda blat
+
+conda install -c bioconda starcode
+
+
+python -u /home/ubuntu/DEMO/IS-Seq-2to3/ISpipelineFv3_test.py -1 /home/ubuntu/DEMO/IS-Seq-2to3/data/simulationUp_R1.fq.gz -2 /home/ubuntu/DEMO/IS-Seq-2to3/data/simulationUp_R2.fq.gz -s POOL-ISA-AVRO-6-Preclin -o /home/ubuntu/DEMO/ISseqOutput -t DEMOPython3 -r /home/ubuntu/DEMO/IS-Seq-2to3/sample_research/20210121_AssociationFIle_POOL6_Preclinical.csv -u /home/ubuntu/DEMO/IS-Seq-2to3/utilsRefData/IsSeq -p /home/ubuntu/DEMO/IS-Seq-2to3/utils -a read -c nothing -q 
+
+nohup python -u /home/ubuntu/DEMO/IS-Seq/ISpipelineFv3_test.py -1 /home/ubuntu/DEMO/IS-Seq/data/simulationUp_R1.fq.gz -2 /home/ubuntu/DEMO/IS-Seq/data/simulationUp_R2.fq.gz -s POOL-ISA-AVRO-6-Preclin -o /home/ubuntu/DEMO/ISseqOutput -t DEMO -r /home/ubuntu/DEMO/IS-Seq/sample_research/20210121_AssociationFIle_POOL6_Preclinical.csv -u /home/ubuntu/DEMO/IS-Seq/utilsRefData/IsSeq -p /home/ubuntu/DEMO/IS-Seq/utils -a read -c nothing -q 0 > logRead.txt 2>&1 &
+
+nohup python -u /home/ubuntu/DEMO/IS-Seq-2to3/ISpipelineFv3_test.py -1 /home/ubuntu/DEMO/IS-Seq-2to3/data/simulationUp_R1.fq.gz -2 /home/ubuntu/DEMO/IS-Seq-2to3/data/simulationUp_R2.fq.gz -s POOL-ISA-AVRO-6-Preclin -o /home/ubuntu/DEMO/ISseqOutput -t DEMOPython3 -r /home/ubuntu/DEMO/IS-Seq-2to3/sample_research/20210121_AssociationFIle_POOL6_Preclinical.csv -u /home/ubuntu/DEMO/IS-Seq-2to3/utilsRefData/IsSeq -p /home/ubuntu/DEMO/IS-Seq-2to3/utils -a read -c nothing -q 0 > logTestPython3.txt 2>&1 &
+
+diff /home/ubuntu/DEMO/ISseqOutput/DEMOpython2/CutAdapt/POOL-ISA-AVRO-6-Preclin_FB-P5-Rd1-LTR.9_FB-P7-Rd2-LC.9_final_parse_filterNo.txt /home/ubuntu/DEMO/ISseqOutput/DEMOPython3/CutAdapt/POOL-ISA-AVRO-6-Preclin_FB-P5-Rd1-LTR.9_FB-P7-Rd2-LC.9_final_parse_filterNo.txt
+
+# python3 works now
+nohup python -u /home/ubuntu/DEMO/IS-Seq-2to3/ISpipelineFv3_test.py -1 /home/ubuntu/DEMO/IS-Seq-2to3/data/simulationUp_R1.fq.gz -2 /home/ubuntu/DEMO/IS-Seq-2to3/data/simulationUp_R2.fq.gz -s POOL-ISA-AVRO-6-Preclin -o /home/ubuntu/DEMO/ISseqOutput -t DEMOPython3 -r /home/ubuntu/DEMO/IS-Seq-2to3/sample_research/20210121_AssociationFIle_POOL6_Preclinical.csv -u /home/ubuntu/DEMO/IS-Seq-2to3/utilsRefData/IsSeq -p /home/ubuntu/DEMO/IS-Seq-2to3/utils -a read -c nothing -q 0 > logTestPython3.txt 2>&1 &
+  
+nohup python -u /home/ubuntu/DEMO/IS-Seq-2to3/ISpipelineFv3_test.py -1 /home/ubuntu/DEMO/IS-Seq-2to3/data/simulationUp_R1.fq.gz -2 /home/ubuntu/DEMO/IS-Seq-2to3/data/simulationUp_R2.fq.gz -s POOL-ISA-AVRO-6-Preclin -o /home/ubuntu/DEMO/ISseqOutput -t DEMOPython3 -r /home/ubuntu/DEMO/IS-Seq-2to3/sample_research/20210121_AssociationFIle_POOL6_Preclinical.csv -u /home/ubuntu/DEMO/IS-Seq-2to3/utilsRefData/IsSeq -p /home/ubuntu/DEMO/IS-Seq-2to3/utils -a umi -c nothing -q 0 > logTestUmiPython3.txt 2>&1 &
+  
+nohup python -u /home/ubuntu/DEMO/IS-Seq-2to3/ISpipelineFv3_test.py -1 /home/ubuntu/DEMO/IS-Seq-2to3/data/simulationUp_R1.fq.gz -2 /home/ubuntu/DEMO/IS-Seq-2to3/data/simulationUp_R2.fq.gz -s POOL-ISA-AVRO-6-Preclin -o /home/ubuntu/DEMO/ISseqOutput -t DEMOPython3 -r /home/ubuntu/DEMO/IS-Seq-2to3/sample_research/20210121_AssociationFIle_POOL6_Preclinical.csv -u /home/ubuntu/DEMO/IS-Seq-2to3/utilsRefData/IsSeq -p /home/ubuntu/DEMO/IS-Seq-2to3/utils -a fragment -c nothing -q 0 > logTestFragmentPython3.txt 2>&1 &
+  
+```
+
+``````{r mixISwithNoise, echo=FALSE}
+
+Rscript /home/ubuntu/DEMO/IS-Seq/R/makeREFIndex.R -i https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_40/GRCh38.primary_assembly.genome.fa.gz -g https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_40/gencode.v40.annotation.gtf.gz -o /home/ubuntu/DEMO/IS-Seq/utilsRefData/IsSeq/hg38_1/GRCh38.primary_assembly.genome.fa
+
+
+nohup python -u /home/ubuntu/DEMO/IS-Seq/ISpipelineFv3_test.py -1 /home/ubuntu/DEMO/IS-Seq/data/simulationUp_R1.fq.gz -2 /home/ubuntu/DEMO/IS-Seq/data/simulationUp_R2.fq.gz -s POOL-ISA-AVRO-6-Preclin -o /home/ubuntu/DEMO/ISseqOutput -t DEMO2 -r /home/ubuntu/DEMO/IS-Seq/sample_research/20210121_AssociationFIle_POOL6_Preclinical.csv -u /home/ubuntu/DEMO/IS-Seq/utilsRefData/IsSeq -p /home/ubuntu/DEMO/IS-Seq/utils -a read -c nothing -q 0 > logRead2.txt 2>&1 &
+
+
+nohup python -u /home/ubuntu/DEMO/IS-Seq/ISpipelineFv3_test.py -1 /home/ubuntu/DEMO/IS-Seq/data/simulationUp_R1.fq.gz -2 /home/ubuntu/DEMO/IS-Seq/data/simulationUp_R2.fq.gz -s POOL-ISA-AVRO-6-Preclin -o /home/ubuntu/DEMO/ISseqOutput -t DEMO2 -r /home/ubuntu/DEMO/IS-Seq/sample_research/20210121_AssociationFIle_POOL6_Preclinical.csv -u /home/ubuntu/DEMO/IS-Seq/utilsRefData/IsSeq -p /home/ubuntu/DEMO/IS-Seq/utils -a read -c nothing -q 0 > logRead2.txt 2>&1 &
+
+
+nohup python -u /home/ubuntu/DEMO/IS-Seq/ISpipelineFv3_test.py -1 /home/ubuntu/SHARE/Aimin/INSPIIRED_test_output/simulationUp_muta_R1.fq.gz -2 /home/ubuntu/SHARE/Aimin/INSPIIRED_test_output/simulationUp_R2.fq.gz -s POOL-ISA-AVRO-6-Preclin -o /home/ubuntu/DEMO/ISseqOutput -t DEMOMutation -r /home/ubuntu/DEMO/IS-Seq/sample_research/20210121_AssociationFIle_POOL6_Preclinical.csv -u /home/ubuntu/DEMO/IS-Seq/utilsRefData/IsSeq -p /home/ubuntu/DEMO/IS-Seq/utils -a read -c nothing -q 0 > logReadMutation.txt 2>&1 &
+
+
+nohup python -u /home/ubuntu/DEMO/IS-Seq/ISpipelineFv3_test.py -1 /home/ubuntu/SHARE/Aimin/INSPIIRED_test_output/simulationUp_muta_R1.fq.gz -2 /home/ubuntu/SHARE/Aimin/INSPIIRED_test_output/simulationUp_R2.fq.gz -s POOL-ISA-AVRO-6-Preclin -o /home/ubuntu/DEMO/ISseqOutput -t DEMOMutation -r /home/ubuntu/DEMO/IS-Seq/sample_research/20210121_AssociationFIle_POOL6_Preclinical.csv -u /home/ubuntu/DEMO/IS-Seq/utilsRefData/IsSeq -p /home/ubuntu/DEMO/IS-Seq/utils -a read -c nothing -q 0 > logReadMutation.txt 2>&1 &
+
+
+nohup python -u /home/ubuntu/DEMO/IS-Seq/ISpipelineFv3_test.py -1 /home/ubuntu/SHARE/Aimin/INSPIIRED_test_output/simulationUp_muta5_R1.fq.gz -2 /home/ubuntu/SHARE/Aimin/INSPIIRED_test_output/simulationUp_R2.fq.gz -s POOL-ISA-AVRO-6-Preclin -o /home/ubuntu/DEMO/ISseqOutput -t DEMOMutation5 -r /home/ubuntu/DEMO/IS-Seq/sample_research/20210121_AssociationFIle_POOL6_Preclinical.csv -u /home/ubuntu/DEMO/IS-Seq/utilsRefData/IsSeq -p /home/ubuntu/DEMO/IS-Seq/utils -a read -c nothing -q 0 > logReadMutation.txt 2>&1 &
+
+/home/ubuntu/SHARE/Aimin/INSPIIRED_test_output/simulationUp_muta5_R1.fq.gz
+
+cat /home/ubuntu/SHARE/Aimin/INSPIIRED_test_output/simulationUp_muta5_R1.fq.gz /home/ubuntu/SHARE/Aimin/RandomFragment/RandomFragmentRandom_R1.fq.gz > /home/ubuntu/SHARE/Aimin/RandomFragment/PosRandom_R1.fq.gz
+
+cat /home/ubuntu/SHARE/Aimin/INSPIIRED_test_output/simulationUp_R2.fq.gz /home/ubuntu/SHARE/Aimin/RandomFragment/RandomFragmentRandomR2.fq.gz > /home/ubuntu/SHARE/Aimin/RandomFragment/PosRandom_R2.fq.gz
+
+
+nohup python -u /home/ubuntu/DEMO/IS-Seq/ISpipelineFv3_test.py -1 /home/ubuntu/SHARE/Aimin/RandomFragment/PosRandom_R1.fq.gz -2 /home/ubuntu/SHARE/Aimin/RandomFragment/PosRandom_R2.fq.gz -s POOL-ISA-AVRO-6-Preclin -o /home/ubuntu/DEMO/ISseqOutput -t DEMOPosRandom -r /home/ubuntu/DEMO/IS-Seq/sample_research/20210121_AssociationFIle_POOL6_Preclinical.csv -u /home/ubuntu/DEMO/IS-Seq/utilsRefData/IsSeq -p /home/ubuntu/DEMO/IS-Seq/utils -a read -c nothing -q 0 > logReadPosRandom.txt 2>&1 &
+
+```
